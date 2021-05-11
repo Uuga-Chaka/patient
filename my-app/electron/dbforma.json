@@ -1,0 +1,41 @@
+{
+    "personas": {
+        "_id": "234nkAED",
+        "nombre": "Juan Pablo Gallego Arias",
+        "tipo_documento": "CC",
+        "numero_documento": 123456789,
+        "sesiones": [
+            "123lmllm",
+            "123lmllm",
+            "123lmllm",
+            "123lmllm",
+            "123lmllm"
+        ],
+        "diagnosticos": [
+            "123lmllm",
+            "123lmllm",
+            "123lmllm",
+            "123lmllm",
+            "123lmllm"
+        ]
+    },
+    "sesiones": {
+        "_id": "234nkAED",
+        "fecha": "10/04/2021",
+        "persona_id": "123i90",
+        "info": "Lorem ipsum dolor sit amen"
+    },
+    "diagnosticos": {
+        "_id": "234nkAED",
+        "color": "#91094c",
+        "titulo": "Nombre del diagnostico",
+        "descripcion": "lorem ipsum dolor sit amen",
+        "personas": [
+            "123lmllm",
+            "123lmllm",
+            "123lmllm",
+            "123lmllm",
+            "123lmllm"
+        ]
+    }
+}

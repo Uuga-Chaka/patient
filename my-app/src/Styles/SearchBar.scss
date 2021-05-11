@@ -1,0 +1,161 @@
+.searchBar-container {
+    box-sizing: border-box;
+    padding: 0 -5px;
+    display: flex;
+    flex-direction: column;
+
+    .searchBar__search-container {
+        .search__input {
+            margin: 0 10px;
+            border-radius: 7px;
+            background-color: $white;
+            display: flex;
+            padding: 5px 10px;
+            flex-direction: row;
+            position: relative;
+            z-index: 2;
+            box-shadow: $shadow;
+            > input {
+                flex-grow: 1;
+                padding: 0 5px;
+            }
+        }
+
+        .searchBar__filters {
+            z-index: 0;
+            position: relative;
+            background-color: hsla(223, 39%, 63%, 0.63);
+            box-sizing: border-box;
+            display: flex;
+            margin: 0 20px;
+            margin-bottom: 10px;
+            border-radius: 0 0 7px 7px;
+            flex-direction: column;
+            padding: 0;
+            .allfilters {
+                padding: 2px 10px;
+                .filter__diagnostico {
+                    justify-content: center;
+                    align-items: center;
+                    .add_diagnosis {
+                        align-items: center;
+                    }
+                    > p {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        color: $white;
+                    }
+                }
+                .filter {
+                    box-sizing: border-box;
+                    color: $white;
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 10px;
+                    > p {
+                        margin: 0 5px;
+                    }
+                    > input {
+                        box-sizing: border-box;
+                        margin: 0;
+                        padding: 5px;
+                        width: 100%;
+                        border-radius: 7px;
+                    }
+                }
+            }
+
+            .more {
+                padding: 2px 10px;
+                position: relative;
+                cursor: pointer;
+                border-radius: 0 0 7px 7px;
+                &:hover {
+                    background-color: $dark_blue;
+                }
+                > p {
+                    padding: 0;
+                    margin: 0;
+                    font-size: 10px;
+                    color: $white;
+                }
+                > input {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .create-patient {
+        display: flex;
+        flex-direction: row;
+        background-color: $whiteblue;
+        padding: 5px 8px;
+        border-radius: 7px;
+        flex-shrink: 0;
+        margin: 0 10px;
+        background-color: #81bef7;
+        flex-shrink: 0;
+        cursor: pointer;
+        > p {
+            margin: 0 0 0 5px;
+            padding: 0;
+            user-select: none;
+        }
+    }
+
+    .searchBar-patients__container {
+        flex-grow: 1;
+        overflow: auto;
+        padding: 0 10px;
+        cursor: pointer;
+        .searchBar-patients__item {
+            box-sizing: border-box;
+            padding: 5px 8px;
+            border-radius: 7px;
+            border: 1px solid $white;
+            background-color: $white;
+            margin: 5px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            &.current {
+                border: 2px solid $dark_blue;
+            }
+            h1 {
+                margin: 0;
+                user-select: none;
+            }
+            p {
+                margin: 0;
+                margin-top: 5px;
+                user-select: none;
+            }
+        }
+    }
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.circle-icon {
+    background-color: $whiteblue;
+    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    > img {
+        width: 100%;
+        height: 100%;
+        margin: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}

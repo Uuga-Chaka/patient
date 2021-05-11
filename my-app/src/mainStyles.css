@@ -1,0 +1,176 @@
+@font-face {
+  font-family: nunitoFam;
+  src: url("./Nunito/Nunito-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: nunitoFam;
+  src: url("./Nunito/Nunito-Bold.ttf");
+  font-weight: 700;
+}
+
+.clr-whiteblue {
+  color: #b3cfe2;
+}
+
+.clr-dark_blue {
+  color: #7c91c5;
+}
+
+.clr-white {
+  color: white;
+}
+
+.clr-dark {
+  color: #4e6673;
+}
+
+.fnt-bold {
+  font-weight: 800;
+}
+
+* {
+  font-family: nunitoFam;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #b3cfe2;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+}
+
+.App {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.App .titleBar {
+  background-color: red;
+  padding: 5px;
+}
+
+.App .mainContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: green;
+}
+
+.App .mainContent .searchBar-container {
+  background-color: blue;
+  height: 100%;
+  min-width: 240px;
+}
+
+.App .mainContent .patient-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.App .mainContent .patient-container .patientTab-container {
+  background-color: orange;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.App .mainContent .patient-container .patientTab-container .patientTab-single {
+  padding: 5px;
+  background-color: green;
+}
+
+.App .mainContent .patient-container .patientInfo-container {
+  background-color: purple;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.App .mainContent .patient-container .patientInfo-container .history-container {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  background-color: royalblue;
+}
+
+.App .mainContent .patient-container .patientInfo-container .sesions-container {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  background-color: yellowgreen;
+}
+
+.searchBar-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 15px;
+}
+
+.searchBar-container .searchBar-patient__container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 15px;
+  border-radius: 7px;
+  border: 1px solid white;
+  background-color: white;
+}
+
+.searchBar-container .searchBar-patient__container.current {
+  border: 2px solid #7c91c5;
+}
+
+.searchBar-container .searchBar-patient__container h1 {
+  margin: 0;
+}
+
+.searchBar-container .searchBar-patient__container p {
+  margin: 0;
+  margin-top: 5px;
+}
+/*# sourceMappingURL=mainStyles.css.map */

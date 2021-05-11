@@ -1,0 +1,833 @@
+@font-face {
+  font-family: nunitoFam;
+  src: url("./Nunito/Nunito-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: nunitoFam;
+  src: url("./Nunito/Nunito-Bold.ttf");
+  font-weight: 700;
+}
+.clr-whiteblue {
+  color: #b3cfe2;
+}
+
+.clr-dark_blue {
+  color: #7c91c5;
+}
+
+.clr-white {
+  color: white;
+}
+
+.clr-dark {
+  color: #4e6673;
+}
+
+.fnt-bold {
+  font-weight: 800;
+}
+
+* {
+  font-family: nunitoFam;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  transition: all 1s;
+}
+
+*::-webkit-scrollbar-thumb {
+  width: 2px;
+  border-radius: 100px;
+  background-color: rgba(124, 145, 197, 0.1);
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  width: 2px;
+  background-color: #b3cfe2;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #eaf0ff;
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  background-color: white;
+  color: #7c91c5;
+  padding: 5px;
+  border: none;
+  font-size: 12px;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+}
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: #b3cfe2;
+}
+
+input[type=color] {
+  -webkit-appearance: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 0;
+}
+
+input[type=color]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type=color]::-webkit-color-swatch {
+  border: none;
+}
+
+.App {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.App .titleBar {
+  height: 36px;
+  color: #7c91c5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.App .titleBar .drag {
+  padding-left: 20px;
+  box-sizing: border-box;
+  -webkit-app-region: drag;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.App .titleBar .drag > p {
+  margin: 0;
+}
+.App .titleBar .window__option {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.App .titleBar .window__option > img {
+  margin: 0 10px;
+}
+.App .mainContent {
+  display: flex;
+  width: 100%;
+  flex: 1 0 auto;
+  height: calc(100% - 36px);
+  max-height: calc(100% - 36px);
+  flex-direction: row;
+}
+.App .mainContent .searchBar-container {
+  min-width: 240px;
+}
+.App .mainContent .patient-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.App .mainContent .patient-container .patientTab-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.App .mainContent .patient-container .patientTab-container .patientTab-single {
+  padding: 5px;
+}
+.App .mainContent .patient-container .patientInfo-container {
+  display: flex;
+  flex-grow: 1;
+}
+.App .mainContent .patient-container .patientInfo-container .history-container {
+  flex: 4;
+}
+.App .mainContent .patient-container .patientInfo-container .sesions-container {
+  flex: 2;
+}
+
+.circle-icon {
+  background-color: #b3cfe2;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+.circle-icon > img {
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.square-icon {
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.square-icon:hover {
+  background-color: #7c91c5;
+}
+
+.ph__display-none {
+  display: none;
+}
+
+.ph__display-inlineblock {
+  display: none;
+}
+
+.cb__visibility-none {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.ph__flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.icons-sesion {
+  width: 43px;
+  height: 43px;
+  background-color: #7c91c5;
+  border-radius: 100px;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.icons-sesion > img {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.PLIMenu {
+  background-color: white;
+  color: #7c91c5;
+  min-width: 150px;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.PLIMenu_action {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.PLIMenu_action > p {
+  padding: 0;
+  margin: 0;
+}
+.PLIMenu_action:hover {
+  background-color: #b3cfe2;
+}
+
+.patient-container .patientTab-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+  border-bottom: 2px solid white;
+  cursor: pointer;
+}
+.patient-container .patientTab-single.active {
+  background-color: white;
+  border-bottom: 2px solid #7c91c5;
+}
+.patient-container .patientTab-single > p {
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  color: #7c91c5;
+}
+.patient-container .patientTab-single > img {
+  opacity: 0;
+}
+.patient-container .patientTab-single:hover > img {
+  opacity: 1;
+}
+.patient-container .patientInfo-container {
+  padding: 10px 0 0 0;
+  max-height: calc(100% - 40px);
+}
+.patient-container .patientInfo-container .history-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.patient-container .patientInfo-container .history-container > .patient__name {
+  border-radius: 7px;
+  font-weight: 800;
+  font-size: 16px;
+  min-width: 15ch;
+  max-width: 100%;
+  margin: 0;
+  color: #4e6673;
+  background-color: #EAF0FF;
+  border: 1px solid #EAF0FF;
+  width: 25%;
+}
+.patient-container .patientInfo-container .history-container > .patient__name:focus {
+  border: 1px solid #b3cfe2;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input > img {
+  margin-right: 10px;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input > input {
+  color: #7c91c5;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input > select {
+  flex-grow: 0;
+  color: #7c91c5;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input:nth-child(3) > input,
+.patient-container .patientInfo-container .history-container .patient-data__input:nth-child(3) > select {
+  border-radius: 7px;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input:nth-child(2) > select {
+  border-radius: 7px 0 0 7px;
+}
+.patient-container .patientInfo-container .history-container .patient-data__input:nth-child(2) > input {
+  border-radius: 0 7px 7px 0;
+}
+.patient-container .patientInfo-container .history-container > textarea {
+  flex-grow: 1;
+  width: 100%;
+  border-radius: 7px;
+}
+.patient-container .patientInfo-container .sesions-container {
+  box-sizing: border-box;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-title {
+  margin: 0;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container {
+  border-bottom: 1px solid #b3cfe2;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items .diagnostico-item {
+  background-color: #8006fa;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px 5px 5px;
+  border-radius: 40px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items .diagnostico-item p {
+  margin: 0;
+  color: white;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items .diagnostico-item > p {
+  opacity: 0.5;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items .diagnostico-item .d-left {
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items .diagnostico-item .d-left > img {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  margin-right: 5px;
+  filter: brightness(0) invert(1) opacity(0.7);
+}
+.patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-add {
+  margin-left: 10px;
+  transform: rotate(45deg);
+  background-color: #b3cfe2;
+  border-radius: 100px;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 7px 7px 0 0;
+  padding: 0 10px;
+  margin-top: 10px;
+  z-index: 3;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container > p {
+  font-size: 12px;
+  color: #7c91c5;
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container .sesion-quantity__container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  margin: 5px;
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container .sesion-quantity__container .sesion-quantity__display {
+  display: flex;
+  flex: 1;
+  height: 8px;
+  background-color: #1bb446;
+  margin: 2px;
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container .sesion-quantity__container .sesion-quantity__display:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container .sesion-quantity__container .sesion-quantity__display:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.patient-container .patientInfo-container .sesions-container .sesiones-contador__container .sesion-quantity__container .sesion-quantity__display.not_finished {
+  background-color: #1bb4467c;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 100px;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 7px;
+  position: relative;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__textarea {
+  min-height: 65px;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__header {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #7c91c5;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__header-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__header-action > p {
+  margin: 0;
+  color: #7c91c5;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__header-action > .calendar {
+  margin-right: 5px;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__header-action > .menu {
+  background-color: #b3cfe2;
+  padding: 7px 11px;
+  border-radius: 100px;
+  margin-left: 10px;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 0 0 7px 7px;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom > p {
+  margin: 0;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom.open {
+  background-color: white;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom.open > p {
+  color: #7c91c5;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom.close {
+  background-color: #7c91c5;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom.close > p {
+  color: white;
+}
+.patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__bottom.close > img {
+  filter: brightness(100);
+  transform: rotate(180deg);
+}
+
+.searchBar-container {
+  box-sizing: border-box;
+  padding: 0 -5px;
+  display: flex;
+  flex-direction: column;
+}
+.searchBar-container .searchBar__search-container .search__input {
+  margin: 0 10px;
+  border-radius: 7px;
+  background-color: white;
+  display: flex;
+  padding: 5px 10px;
+  flex-direction: row;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.searchBar-container .searchBar__search-container .search__input > input {
+  flex-grow: 1;
+  padding: 0 5px;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters {
+  z-index: 0;
+  position: relative;
+  background-color: rgba(124, 145, 197, 0.63);
+  box-sizing: border-box;
+  display: flex;
+  margin: 0 20px;
+  margin-bottom: 10px;
+  border-radius: 0 0 7px 7px;
+  flex-direction: column;
+  padding: 0;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters {
+  padding: 2px 10px;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter__diagnostico {
+  justify-content: center;
+  align-items: center;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter__diagnostico .add_diagnosis {
+  align-items: center;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter__diagnostico > p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter {
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter > p {
+  margin: 0 5px;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter > input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  border-radius: 7px;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .more {
+  padding: 2px 10px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 0 0 7px 7px;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .more:hover {
+  background-color: #7c91c5;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .more > p {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  color: white;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .more > input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.searchBar-container .create-patient {
+  display: flex;
+  flex-direction: row;
+  background-color: #b3cfe2;
+  padding: 5px 8px;
+  border-radius: 7px;
+  flex-shrink: 0;
+  margin: 0 10px;
+  background-color: #81bef7;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.searchBar-container .create-patient > p {
+  margin: 0 0 0 5px;
+  padding: 0;
+  user-select: none;
+}
+.searchBar-container .searchBar-patients__container {
+  flex-grow: 1;
+  overflow: auto;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.searchBar-container .searchBar-patients__container .searchBar-patients__item {
+  box-sizing: border-box;
+  padding: 5px 8px;
+  border-radius: 7px;
+  border: 1px solid white;
+  background-color: white;
+  margin: 5px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.searchBar-container .searchBar-patients__container .searchBar-patients__item.current {
+  border: 2px solid #7c91c5;
+}
+.searchBar-container .searchBar-patients__container .searchBar-patients__item h1 {
+  margin: 0;
+  user-select: none;
+}
+.searchBar-container .searchBar-patients__container .searchBar-patients__item p {
+  margin: 0;
+  margin-top: 5px;
+  user-select: none;
+}
+
+.rotate {
+  transform: rotate(45deg);
+}
+
+.circle-icon {
+  background-color: #b3cfe2;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+.circle-icon > img {
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+.modal .modalBox {
+  border-radius: 7px;
+  background-color: #EAF0FF;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 50%;
+  max-width: 661px;
+}
+.modal .modalBox h3 {
+  font-size: 14px;
+  font-weight: 800;
+  color: #4e6673;
+  margin-left: 10px;
+}
+.modal .modalBox .color {
+  box-sizing: border-box;
+  width: 100%;
+}
+.modal .modalBox .color > label:nth-child(1) {
+  flex-grow: 6;
+  flex-shrink: 0;
+}
+.modal .modalBox .color > label:nth-child(3) {
+  flex: 0;
+}
+.modal .modalBox .color > label:nth-child(3) input {
+  width: 50px;
+}
+.modal .modalBox .color .color__container {
+  border-radius: 7px;
+  background-color: white;
+  overflow: hidden;
+  height: 100%;
+}
+.modal .modalBox .ph__flex-row label {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+.modal .modalBox .ph__flex-row label > p {
+  font-size: 12px;
+  color: #4e6673;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+.modal .modalBox .ph__flex-row label > input {
+  padding: 5px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 7px;
+}
+.modal .modalBox .ph__flex-row label > input[type=color] {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.modal .modalBox .ph__flex-column {
+  margin: 0 10px;
+}
+.modal .modalBox .ph__flex-column p {
+  color: #4e6673;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+.modal .modalBox .ph__flex-column textarea {
+  border-radius: 7px;
+  width: 100%;
+  height: 90px;
+}
+.modal .modalBox .list__container {
+  max-height: 230px;
+  margin-top: 10px;
+  overflow: auto;
+}
+.modal .modalBox .list__container .list__item {
+  background-color: white;
+  border-radius: 13px 7px 7px 7px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.modal .modalBox .list__container .list__item:last-child {
+  margin-bottom: 0;
+}
+.modal .modalBox .list__container .list__item-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal .modalBox .list__container .list__item-top .title {
+  display: flex;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  flex-direction: row;
+  padding: 5px 10px;
+  border-radius: 100px 100px 100px 0;
+  padding: 3px 10px;
+}
+.modal .modalBox .list__container .list__item-top .title > p {
+  padding: 0;
+  margin: 0 5px;
+  font-size: 14px;
+}
+.modal .modalBox .list__container .list__item-top .menu {
+  margin-right: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  width: 20px;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 100px;
+  align-items: center;
+}
+.modal .modalBox .list__container .list__item-top .menu > img {
+  padding: 5px;
+}
+.modal .modalBox .list__container .list__item-top .menu:hover {
+  transform: scale(1.2);
+}
+.modal .modalBox .list__container .list__item-description {
+  padding: 10px;
+}
+.modal .modalBox .buttons {
+  display: flex;
+  margin: 15px 10px 5px 10px;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.modal .modalBox .buttons > input[type=button] {
+  padding: 10px;
+  color: #4e6673;
+  background-color: #b3cfe2;
+  border-radius: 7px;
+  margin-left: 10px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.modal .modalBox .buttons > input[type=button]:hover {
+  background-color: white;
+}
+
+/*# sourceMappingURL=index.css.map */

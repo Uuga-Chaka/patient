@@ -1,0 +1,275 @@
+.patient-container {
+    .patientTab {
+        &-container {
+        }
+        &-single {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            width: 150px;
+            border-bottom: 2px solid $white;
+            cursor: pointer;
+            &.active {
+                background-color: $white;
+                border-bottom: 2px solid $dark_blue;
+            }
+            > p {
+                user-select: none;
+                margin: 0;
+                padding: 0;
+                color: $dark_blue;
+            }
+            > img {
+                opacity: 0;
+            }
+            &:hover {
+                > img {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .patientInfo {
+        &-container {
+            padding: 10px 0 0 0;
+            max-height: calc(100% - 40px);
+            .history-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                box-sizing: border-box;
+                > .patient__name {
+                    border-radius: 7px;
+                    font-weight: 800;
+                    font-size: 16px;
+                    min-width: 15ch;
+                    max-width: 100%;
+                    margin: 0;
+                    color: $dark;
+                    background-color: $lightbluebg;
+                    border: 1px solid $lightbluebg;
+                    width: 25%;
+                    &:focus {
+                        border: 1px solid $whiteblue;
+                    }
+                }
+                .patient-data__input {
+                    display: flex;
+                    flex-direction: row;
+                    margin: 5px 0;
+
+                    > img {
+                        margin-right: 10px;
+                    }
+
+                    > input {
+                        color: $dark_blue;
+                    }
+
+                    > select {
+                        flex-grow: 0;
+                        color: $dark_blue;
+                    }
+
+                    &:nth-child(3) {
+                        > input,
+                        > select {
+                            border-radius: 7px;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        > select {
+                            border-radius: 7px 0 0 7px;
+                        }
+                        > input {
+                            border-radius: 0 7px 7px 0;
+                        }
+                    }
+                }
+
+                > textarea {
+                    flex-grow: 1;
+                    width: 100%;
+                    border-radius: 7px;
+                }
+            }
+            .sesions-container {
+                box-sizing: border-box;
+                padding: 0 15px;
+                display: flex;
+                flex-direction: column;
+
+                min-height: 0;
+                .diagnostico {
+                    &-title {
+                        margin: 0;
+                    }
+                    &-container {
+                        border-bottom: 1px solid $whiteblue;
+                        padding: 10px 0;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        .diagnostico-items {
+                            display: flex;
+                            align-items: flex-start;
+                            flex-wrap: wrap;
+                            .diagnostico-item {
+                                background-color: #8006fa;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding: 5px 10px 5px 5px;
+                                border-radius: 40px;
+                                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+                                p {
+                                    margin: 0;
+                                    color: $white;
+                                }
+                                > p {
+                                    opacity: 0.5;
+                                }
+                                .d-left {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 20px;
+                                    > img {
+                                        background-color: rgba(0, 0, 0, 0.5);
+                                        border-radius: 100%;
+                                        // opacity: 0.5;
+                                        margin-right: 5px;
+                                        filter: brightness(0) invert(1) opacity(0.7);
+                                    }
+                                }
+                            }
+                        }
+                        .diagnostico-add {
+                            margin-left: 10px;
+                            transform: rotate(45deg);
+                            background-color: $whiteblue;
+                            border-radius: 100px;
+                            padding: 0;
+                            margin: 0;
+                            padding: 5px;
+                        }
+                    }
+                }
+                .sesiones-contador__container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: $white;
+                    border-radius: 7px 7px 0 0;
+                    padding: 0 10px;
+                    margin-top: 10px;
+                    z-index: 3;
+                    box-shadow: $shadow;
+                    > p {
+                        font-size: 12px;
+                        color: $dark_blue;
+                    }
+                    .sesion-quantity__container {
+                        display: flex;
+                        flex-grow: 1;
+                        flex-direction: row;
+                        margin: 5px;
+                        .sesion-quantity__display {
+                            display: flex;
+                            flex: 1;
+                            height: 8px;
+                            background-color: $sesion_finish;
+                            margin: 2px;
+                            &:last-child {
+                                border-radius: 0 4px 4px 0;
+                            }
+                            &:first-child {
+                                border-radius: 4px 0 0 4px;
+                            }
+                            &.not_finished {
+                                background-color: $sesion_not_finish;
+                            }
+                        }
+                    }
+                }
+                .sesions__description-container {
+                    flex-grow: 1;
+                    overflow-y: auto;
+                    min-height: 100px;
+                    .sesion__container {
+                        display: flex;
+                        flex-direction: column;
+                        background-color: $white;
+                        border-radius: 7px;
+                        position: relative;
+                        box-sizing: border-box;
+                        margin: 10px 0;
+                        .sesion__textarea {
+                            min-height: 65px;
+                        }
+                        .sesion__header {
+                            padding: 5px 10px;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            border-bottom: 1px solid $dark_blue;
+                            &-action {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+
+                                > p {
+                                    margin: 0;
+                                    color: $dark_blue;
+                                }
+                                > .calendar {
+                                    margin-right: 5px;
+                                }
+                                > .menu {
+                                    background-color: $whiteblue;
+                                    padding: 7px 11px;
+                                    border-radius: 100px;
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+                        .sesion__bottom {
+                            cursor: pointer;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding: 5px 10px;
+                            border-radius: 0 0 7px 7px;
+                            > p {
+                                margin: 0;
+                            }
+                            &.open {
+                                background-color: $white;
+                                > p {
+                                    color: $dark_blue;
+                                }
+                            }
+                            &.close {
+                                background-color: $dark_blue;
+                                > p {
+                                    color: $white;
+                                }
+                                > img {
+                                    filter: brightness(100);
+                                    transform: rotate(180deg);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,72 +1,7 @@
-body {
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #b3cfe2;
-    height: 100vh;
-    max-height: 100vh;
-    width: 100%;
-    max-width: 100%;
-}
+@import "./Styles/Colors";
+@import "./Styles/Fonts.scss";
+@import "./Styles/App";
+@import "./Styles/PatientEditor.scss";
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-.App {
-    height: 100vh;
-    max-height: 100vh;
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .titleBar {
-        background-color: red;
-        padding: 5px;
-    }
-
-    .mainContent {
-        display: flex;
-        width: 100%;
-        flex: 1;
-        flex-direction: row;
-        background-color: green;
-        .searchBar-container {
-            background-color: blue;
-            height: 100%;
-            min-width: 240px;
-        }
-        .patient-container {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            .patientTab-container {
-                background-color: orange;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: flex-start;
-                .patientTab-single {
-                    padding: 5px;
-                    background-color: green;
-                }
-            }
-            .patientInfo-container {
-                background-color: purple;
-                display: flex;
-                flex-grow: 1;
-                // flex-direction: row;
-                .history-container {
-                    flex: 4;
-                    background-color: royalblue;
-                }
-
-                .sesions-container {
-                    flex: 2;
-                    background-color: yellowgreen;
-                }
-            }
-        }
-    }
-}
+@import "./Styles/SearchBar";
+@import "./Styles/Modal.scss";

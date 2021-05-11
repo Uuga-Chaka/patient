@@ -1,0 +1,30 @@
+@font-face {
+    font-family: nunitoFam;
+    src: url("./Nunito/Nunito-Regular.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: nunitoFam;
+    src: url("./Nunito/Nunito-Bold.ttf");
+    font-weight: 700;
+}
+
+.clr-whiteblue {
+    color: $whiteblue;
+}
+
+.clr-dark_blue {
+    color: $dark_blue;
+}
+
+.clr-white {
+    color: $white;
+}
+
+.clr-dark {
+    color: $dark;
+}
+
+.fnt-bold {
+    font-weight: 800;
+}

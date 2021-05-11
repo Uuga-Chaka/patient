@@ -1,0 +1,235 @@
+* {
+    font-family: nunitoFam;
+    font-size: 12px;
+    font-weight: 400;
+}
+*::-webkit-scrollbar {
+    width: 5px;
+    transition: all 1s;
+}
+
+*::-webkit-scrollbar-thumb {
+    width: 2px;
+    border-radius: 100px;
+    background-color: rgba(124, 145, 197, 0.1);
+}
+*:hover {
+    &::-webkit-scrollbar-thumb {
+        width: 2px;
+        background-color: $whiteblue;
+    }
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #eaf0ff;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+
+input,
+select,
+textarea {
+    background-color: $white;
+    color: $dark_blue;
+    padding: 5px;
+    border: none;
+    font-size: 12px;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+    &::placeholder {
+        color: $whiteblue;
+    }
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+.App {
+    height: 100vh;
+    max-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    .titleBar {
+        height: 36px;
+        color: $dark_blue;
+        display: flex;
+        // border-bottom: 1px solid $dark-blue;
+        flex-direction: row;
+        justify-content: space-between;
+        .drag {
+            padding-left: 20px;
+            box-sizing: border-box;
+            -webkit-app-region: drag;
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            > p {
+                margin: 0;
+            }
+        }
+        .window__option {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            > img {
+                margin: 0 10px;
+            }
+        }
+    }
+
+    .mainContent {
+        display: flex;
+        width: 100%;
+        flex: 1 0 auto;
+        height: calc(100% - 36px);
+        max-height: calc(100% - 36px);
+        flex-direction: row;
+        .searchBar-container {
+            min-width: 240px;
+        }
+        .patient-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            .patientTab-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                .patientTab-single {
+                    padding: 5px;
+                }
+            }
+            .patientInfo-container {
+                display: flex;
+                flex-grow: 1;
+                // flex-direction: row;
+                .history-container {
+                    flex: 4;
+                }
+
+                .sesions-container {
+                    flex: 2;
+                }
+            }
+        }
+    }
+}
+
+.circle-icon {
+    background-color: $whiteblue;
+    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    > img {
+        width: 100%;
+        height: 100%;
+        margin: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+.square-icon {
+    padding: 0 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    &:hover {
+        background-color: $dark_blue;
+    }
+}
+
+.ph__display-none {
+    display: none;
+}
+.ph__display-inlineblock {
+    display: none;
+}
+
+.cb__visibility-none {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.ph__flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.icons-sesion {
+    width: 43px;
+    height: 43px;
+    background-color: $dark-blue;
+    border-radius: 100px;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: $shadow;
+    > img {
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+}
+
+.PLIMenu {
+    background-color: $white;
+    color: $dark-blue;
+    min-width: 150px;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: $shadow;
+    &_action{
+        cursor: pointer;
+        padding: 5px 10px ;
+        >p{
+            padding: 0;
+            margin: 0;
+        }
+        &:hover{
+            background-color: $whiteblue;
+        }
+    }
+}
