@@ -19,11 +19,76 @@ const { ipcRenderer } = window.require('electron');
 //   sesiones: [],
 //   diagnosticos: []
 // }
-class App extends Component {
-  constructor(props) {
+/* */
+
+interface IProps {
+  titulo: 'Hola'
+}
+
+interface IState {
+  modalType: string,
+  modalData: object,
+  currentTab: number,
+  openTabs: Array<IPatientData>,
+  personas: Array<IPersona>,
+  RCMenu: {
+    isOpen: boolean,
+    actions: [],
+    args: null,
+    mousePos: {
+      x: number,
+      y: number
+    }
+  }
+}
+
+interface IPatientData {
+  _id?: string,
+  nombre: string,
+  tipo_documento: string,
+  numero_documento: string,
+  fecha_nacimiento: string,
+  descripcion: string,
+  sesiones: Array<ISesion>,
+  diagnosticos: Array<{}>
+}
+
+interface IPersona {
+  _id?: string,
+  nombre: string,
+  tipo_documento: string,
+  numero_documento: string,
+  fecha_nacimiento: string,
+  descripcion: string,
+}
+
+interface ISesion {
+  _id?: string,
+  fecha: string,
+  info: string
+}
+
+interface ICurrentTab { }
+
+interface IListaDePacientes { }
+
+interface IRightClickMenu {
+  isOpen: boolean,
+  actions: [],
+  args: object,
+  mousePos: { x: number, y: number }
+}
+
+class App extends Component<IProps, IState> {
+  // RCMenu: React.RefObject<HTMLElement>;
+  // node: React.RefObject<HTMLElement>;
+  private RCMenu = React.createRef<HTMLDivElement>();
+  private node = React.createRef<HTMLDivElement>();
+
+  constructor(props: IProps) {
     super(props);
     this.state = {
-      modalType: 0,
+      modalType: '',
       modalData: {},
       currentTab: 0,
       openTabs: [],
@@ -38,8 +103,8 @@ class App extends Component {
         }
       }
     }
-    this.node = React.createRef();
-    this.RCMenu = React.createRef();
+    // this.node = React.createRef();
+    // this.RCMenu = React.createRef();
   }
 
   componentDidMount() {
@@ -60,7 +125,7 @@ class App extends Component {
 
   //Uplaod File and Update File
   handleDocumentUpload = () => {
-    ipcRenderer.on('activate-save', async (evt, args) => {
+    ipcRenderer.on('activate-save', async (evt: Event, args: object) => {
       //En caso de que no haya ninguna pesta;a abierta
       //La acci'ion de guardado tiene en cuanta qué archivo se está 
       //visualizando actualmente para hacer el cambio
@@ -115,9 +180,9 @@ class App extends Component {
     console.log(result);
   }
 
-  eliminarPaciente = async (pacienteId) => {
+  eliminarPaciente = async (pacienteId: string) => {
     const result = await ipcRenderer.invoke('delete-patient', pacienteId);
-    this.setState({ personas: this.state.personas.filter(e => e._id !== result._id) })
+    this.setState({ personas: this.state.personas.filter((e: any) => e._id !== result._id) })
   }
 
   minimize = () => {
@@ -132,23 +197,19 @@ class App extends Component {
     ipcRenderer.send('quit')
   }
 
-  setModalType = (modalType) => {
+  setModalType = (modalType: string) => {
     this.setState({ modalType });
   }
 
-  setModalData = (modalData) => {
+  setModalData = (modalData: {}) => {
     this.setState(modalData);
   }
 
-  handleSendInfo = (info, type) => {
-    console.log(info, type);
-  }
-
-  handleTabChange = (tabNumber) => {
+  handleTabChange = (tabNumber: number) => {
     this.setState({ currentTab: tabNumber });
   }
 
-  handleHistoryEdit = (currentTab, field, value) => {
+  handleHistoryEdit = (currentTab: number, field: string, value: string) => {
     //loops trough the open taps 
     var patients = this.state.openTabs.slice();
     patients[currentTab] = { ...patients[currentTab], [field]: value }
@@ -156,7 +217,7 @@ class App extends Component {
     this.setState({ openTabs: patients })
   }
 
-  handleSesionEdit = (currentTab, sesionIndex, field, value) => {
+  handleSesionEdit = (currentTab: number, sesionIndex: number, field: string, value: string) => {
     var patients = this.state.openTabs.slice();
     patients[currentTab].sesiones[sesionIndex] = { ...patients[currentTab].sesiones[sesionIndex], [field]: value }
     this.setState({ openTabs: patients })
@@ -166,9 +227,9 @@ class App extends Component {
     var d = new Date();
     var todaysDate = d.getUTCFullYear() + "-" + ("0" + (d.getUTCMonth() + 1)).slice(-2) + "-" + ("0" + d.getUTCDate()).slice(-2)
     console.log(todaysDate)
-    const sesionJson = {
-      "fecha": todaysDate,
-      "info": "Lorem ipsum dolor sit amen"
+    const sesionJson: ISesion = {
+      fecha: todaysDate,
+      info: "Lorem ipsum dolor sit amen"
     }
 
     var patients = this.state.openTabs.slice();
@@ -177,7 +238,7 @@ class App extends Component {
     this.setState({ openTabs: patients });
   }
 
-  handleTabOpening = async (patientId) => {
+  handleTabOpening = async (patientId: string) => {
     if (this.state.openTabs.length <= 0 && this.state.currentTab > 0) {
       this.setState({ currentTab: 0 })
     };
@@ -199,28 +260,25 @@ class App extends Component {
     });
   }
 
-  handleTabClosing = (tabId) => {
+  handleTabClosing = (tabId: string) => {
     this.setState({
       currentTab: this.state.currentTab <= 0 ? 0 : this.state.currentTab - 1,
       openTabs: this.state.openTabs.filter(tab => tab._id !== tabId)
     });
   }
 
-  handleTabChange = (currentTab) => {
-    this.setState({ currentTab })
-  }
-
-  handleMenuOpening = (actions, mousePos = { x: 0, y: 0 }, args) => {
+  handleMenuOpening = (actions: any, mousePos = { x: 0, y: 0 }, args: any) => {
     this.setState({ RCMenu: { isOpen: true, actions, mousePos, args } });
 
   }
 
-  handleMenuClosing = e => {
+  //ARREGLAR EL TIPO DE ESTA VARIABLE
+  handleMenuClosing = (e: any) => {
     // console.log(e);
 
     if (this.RCMenu) {
 
-      if (!this.RCMenu.current.contains(e.target)) {
+      if (!this.RCMenu.current!.contains(e.target)) {
 
         this.setState({ RCMenu: { ...this.state.RCMenu, isOpen: false } })
 
@@ -240,11 +298,11 @@ class App extends Component {
 
       actionName: 'Borrar',
 
-      action: async (id) => {
+      action: async (id: string) => {
 
         this.setState({ RCMenu: { ...this.state.RCMenu, isOpen: false } })
         await ipcRenderer.invoke('delete-patient', { _id: id })
-        this.setState({ openTabs: this.state.openTabs.filter(e => e.id !== id) })
+        this.setState({ openTabs: this.state.openTabs.filter((e: any) => e.id !== id) })
         this.cargarPaciente();
       }
 
@@ -316,6 +374,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default App;
