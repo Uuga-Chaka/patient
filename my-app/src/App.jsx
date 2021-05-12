@@ -36,7 +36,7 @@ class App extends Component {
           x: 0,
           y: 0
         }
-      }
+      },
     }
     this.node = React.createRef();
     this.RCMenu = React.createRef();
@@ -69,7 +69,7 @@ class App extends Component {
       const result = await ipcRenderer.invoke('save-document', this.state.openTabs[this.state.currentTab]);
 
 
-      // this.state.personas.map(e=>console.log(e._id));
+      // this.state.personas.map(e=>console.log(e._id)); 
       console.log(result);
       this.setState({
         openTabs: this.state.openTabs.map(e => e._id === result._id ? result : e),
@@ -89,12 +89,37 @@ class App extends Component {
         setModalType={this.setModalType}
         setModalData={this.setModalData}
       />
-    } else if (this.state.modalType === "is") {
+    } else if (this.state.modalType === "isD") {
+      /**Abrir el selctor de items con las opciones de la descripciones */
       return <ItemSelector
         setModalType={this.setModalType}
         setModalData={this.setModalData}
+        loadData={this.handleDescriptionLoad}
+      />;
+    } else if (this.state.modalType === "isS") {
+      /**Abrir el selctor de items con las opciones de la sesiones */
+      return <ItemSelector
+        setModalType={this.setModalType}
+        setModalData={this.setModalData}
+        loadData={this.handleSesionLoad}
       />;
     }
+  }
+
+  handleDescriptionLoad = async (setData) => {
+
+    const diagnosticos = await ipcRenderer.invoke('load-diagnosticos', {});
+    console.log(diagnosticos);
+    //    setData(diagnosticos);
+
+  }
+
+  handleSesionLoad = async (setData) => {
+
+    const sesion = await ipcRenderer.invoke('load-sesion', {});
+
+    setData(sesion);
+
   }
 
   //Crear un nuevo paciente
@@ -133,6 +158,7 @@ class App extends Component {
   }
 
   setModalType = (modalType) => {
+    // console.log(modalType);
     this.setState({ modalType });
   }
 
@@ -282,6 +308,7 @@ class App extends Component {
             crearPaciente={this.crearPaciente}
             patients={this.state.personas}
             handleMenuOpening={this.handleMenuOpening}
+            handleModalType={this.setModalType}
             handlePLIMenuActions={this.PLIMenuActions}
           />
           {this.state.openTabs.length > 0 &&
@@ -292,6 +319,7 @@ class App extends Component {
               handleSesionEdit={this.handleSesionEdit}
               handleTabChange={this.handleTabChange}
               handleTabClosing={this.handleTabClosing}
+              handleModalType={this.setModalType}
             />
           }
           {

@@ -15,9 +15,7 @@ const SearchBar = (props) => {
             <div className="searchBar__filters">
                 <div className="allfilters" style={isFilterVisible ? { display: "block" } : { display: "none" }}>
                     <label htmlFor="" className="filter">
-                        <p>
-                            Tipo de D.I.
-                    </p>
+                        <p>Tipo de D.I.</p>
                         <input type="text" />
                     </label>
                     <label htmlFor="" className="filter">
@@ -29,7 +27,7 @@ const SearchBar = (props) => {
                     <div className="filter__diagnostico">
                         <div className="ph__flex-row add_diagnosis">
                             <p>Diagnostico </p>
-                            <div className="circle-icon">
+                            <div className="circle-icon" onClick={() => { props.handleModalType('isD') }}>
                                 <img src={process.env.PUBLIC_URL + "./icons/ic_add.svg"} alt="" className="rotate" />
                             </div>
                         </div>
@@ -50,7 +48,7 @@ const SearchBar = (props) => {
         </div>
         <div className="create-patient" onClick={() => props.crearPaciente()}>
             <img src={process.env.PUBLIC_URL + "./icons/ic_add-patient.svg"} alt="" />
-            <p className="clr-dark" >Crear nuevo paciente</p>
+            <p  >Crear nuevo paciente</p>
         </div>
         <div className="searchBar-patients__container">
             <>

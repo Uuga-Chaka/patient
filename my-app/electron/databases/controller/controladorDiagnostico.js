@@ -1,24 +1,26 @@
 const Modelo = require('../modelos/modeloDiagnostico');
 
-function agregar(args) {
+async function agregar(args) {
 
-    Modelo.agregar(args);
+    return await Modelo.agregar(args);
+
 }
 
-function borrar(id) {
+async function borrar(id) {
 
-    Modelo.borrar(id);
+    return await Modelo.borrar(id);
+
 }
 
-function actualizar(id, args) {
+async function actualizar(id, args) {
 
-    Modelo.actualizar(id, args);
+    return await Modelo.actualizar(id, args);
 }
 
-function encontrar(id) {
+async function encontrar(id) {
+    
+    return await Modelo.encontrar(id);
 
-
-    Modelo.encontrar(id);
 }
 
 module.exports = {

@@ -540,7 +540,7 @@ input[type=color]::-webkit-color-swatch {
 .searchBar-container .searchBar__search-container .searchBar__filters {
   z-index: 0;
   position: relative;
-  background-color: rgba(124, 145, 197, 0.63);
+  background-color: #7c91c5;
   box-sizing: border-box;
   display: flex;
   margin: 0 20px;
@@ -558,6 +558,9 @@ input[type=color]::-webkit-color-swatch {
 }
 .searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter__diagnostico .add_diagnosis {
   align-items: center;
+}
+.searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter__diagnostico .add_diagnosis > p {
+  color: white;
 }
 .searchBar-container .searchBar__search-container .searchBar__filters .allfilters .filter__diagnostico > p {
   display: flex;
@@ -587,9 +590,10 @@ input[type=color]::-webkit-color-swatch {
   position: relative;
   cursor: pointer;
   border-radius: 0 0 7px 7px;
+  background-color: #7c91c5;
 }
 .searchBar-container .searchBar__search-container .searchBar__filters .more:hover {
-  background-color: #7c91c5;
+  background-color: #a0b4e8;
 }
 .searchBar-container .searchBar__search-container .searchBar__filters .more > p {
   padding: 0;
@@ -611,13 +615,18 @@ input[type=color]::-webkit-color-swatch {
   border-radius: 7px;
   flex-shrink: 0;
   margin: 0 10px;
-  background-color: #81bef7;
+  background-color: #7c91c5;
   flex-shrink: 0;
   cursor: pointer;
 }
+.searchBar-container .create-patient > img {
+  filter: brightness(0) invert(1);
+}
 .searchBar-container .create-patient > p {
+  color: white;
   margin: 0 0 0 5px;
   padding: 0;
+  font-size: 12px;
   user-select: none;
 }
 .searchBar-container .searchBar-patients__container {
@@ -627,16 +636,20 @@ input[type=color]::-webkit-color-swatch {
   cursor: pointer;
 }
 .searchBar-container .searchBar-patients__container .searchBar-patients__item {
-  box-sizing: border-box;
   padding: 5px 8px;
   border-radius: 7px;
   border: 1px solid white;
   background-color: white;
-  margin: 5px 0;
+  margin: 10px 0;
+  box-sizing: border-box;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid white;
 }
 .searchBar-container .searchBar-patients__container .searchBar-patients__item.current {
-  border: 2px solid #7c91c5;
+  border: 1px solid #7c91c5;
+}
+.searchBar-container .searchBar-patients__container .searchBar-patients__item:hover {
+  border: 1px solid #7c91c5;
 }
 .searchBar-container .searchBar-patients__container .searchBar-patients__item h1 {
   margin: 0;
