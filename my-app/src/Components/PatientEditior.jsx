@@ -98,7 +98,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                 </div>
                             })}
                         </div>
-                        <img className="diagnostico-add" alt="add description" src={process.env.PUBLIC_URL + "icons/ic_add.svg"} />
+                        <img className="diagnostico-add" onClick={() => handleModalType('isS')} alt="add description" src={process.env.PUBLIC_URL + "icons/ic_add.svg"} />
                     </div>
                     <div className="sesiones-contador__container">
                         <p>Sesiones</p>

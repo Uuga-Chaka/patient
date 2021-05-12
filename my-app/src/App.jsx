@@ -117,8 +117,8 @@ class App extends Component {
   handleSesionLoad = async (setData) => {
 
     const sesion = await ipcRenderer.invoke('load-sesion', {});
-
-    setData(sesion);
+    console.log(sesion);
+    // setData(sesion);
 
   }
 
