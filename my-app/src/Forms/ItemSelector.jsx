@@ -16,9 +16,7 @@ const ItemSelector = (props) => {
 
 
     useEffect(() => {
-        console.log('ejecutandose');
         props.loadData(setItemsToDisplay);
-
     }, [props])
 
 
@@ -58,7 +56,7 @@ const ItemSelector = (props) => {
         </div>
         <div className="buttons">
             <input type="button" value="Cancelar" onClick={e => props.setModalType(0)} />
-            <input type="button" value="Crear" onClick={e => console.log('clicked')} />
+            <input type="button" value="Crear" onClick={e => props.setModalType(props.selectorType)} />
         </div>
     </>);
 }

@@ -24,10 +24,10 @@ function actualizar(id, args) {
     Modelo.actualizar(id, args);
 }
 
-function encontrar(id) {
+async function encontrar(args) {
 
+    return await Modelo.encontrar(args);
 
-    Modelo.encontrar(id);
 }
 
 module.exports = {

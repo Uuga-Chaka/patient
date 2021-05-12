@@ -61,7 +61,9 @@ function createLocalDB() {
 
     ipcMain.handle('load-sesion', async (evt, args) => {
 
-        const sesiones = await controladorSesiones.encontrar(args);
+        const loadSesionByPatient = { patientId: args }
+
+        const sesiones = await controladorSesiones.encontrar({});
 
         return sesiones;
 

@@ -95,30 +95,45 @@ class App extends Component {
         setModalType={this.setModalType}
         setModalData={this.setModalData}
         loadData={this.handleDescriptionLoad}
+        selectorType={'cd'}
       />;
     } else if (this.state.modalType === "isS") {
       /**Abrir el selctor de items con las opciones de la sesiones */
       return <ItemSelector
         setModalType={this.setModalType}
         setModalData={this.setModalData}
-        loadData={this.handleSesionLoad}
+        loadData={this.handleDiagnosticoLoad}
+        selectorType={'cdi'}
       />;
     }
   }
 
-  handleDescriptionLoad = async (setData) => {
+  handleDiagnosticoLoad = async (setData) => {
 
-    const diagnosticos = await ipcRenderer.invoke('load-diagnosticos', {});
-    console.log(diagnosticos);
+    const diagnostico = await ipcRenderer.invoke('load-diagnosticos', {});
+    console.log(diagnostico)
     //    setData(diagnosticos);
+  }
+
+  handleDescripcionLoad = async (setData) => {
+
+    const descripcion = await ipcRenderer.invoke('load-descripcion', {});
+    // setData(sesion);
+    console.log(descripcion)
 
   }
 
-  handleSesionLoad = async (setData) => {
+  handleDescripcionUpload = async (args) => {
 
-    const sesion = await ipcRenderer.invoke('load-sesion', {});
-    console.log(sesion);
-    // setData(sesion);
+    const descripcion = await ipcRenderer.invoke('agregar-descripcion', args)
+    console.log(descripcion)
+
+  }
+
+  handleDiagnosticoUpload = async (args) => {
+
+    const diagnostico = await ipcRenderer.invoke('agregar-diagnostico', args);
+    console.log(diagnostico)
 
   }
 
