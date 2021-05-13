@@ -816,12 +816,18 @@ input[type=color]::-webkit-color-swatch {
   justify-content: flex-end;
   border-radius: 100px;
   align-items: center;
+  position: relative;
+}
+.modal .modalBox .list__container .list__item-top .menu__container {
+  top: 0;
+  right: 0;
+  position: absolute;
 }
 .modal .modalBox .list__container .list__item-top .menu > img {
   padding: 5px;
 }
 .modal .modalBox .list__container .list__item-top .menu:hover {
-  transform: scale(1.2);
+  background-color: #EAF0FF;
 }
 .modal .modalBox .list__container .list__item-description {
   padding: 10px;

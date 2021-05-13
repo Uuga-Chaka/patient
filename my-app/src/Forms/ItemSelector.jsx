@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ISMenu from "../Components/RCMenu/ISMenu";
 
 function padZero(str, len) {
     len = len || 2;
@@ -46,12 +47,13 @@ const ItemSelector = (props) => {
     });
 
 
-    const [itemsToDisplay, setItemsToDisplay] = useState([]);
 
+    const [itemsToDisplay, setItemsToDisplay] = useState([]);
 
     useEffect(() => {
         props.loadData(setItemsToDisplay);
-    }, [props])
+
+    }, [props]);
 
 
     return (<>
@@ -77,9 +79,7 @@ const ItemSelector = (props) => {
                             <p style={{ color: invertColor(e.color, true) }}>{e.nombre}</p>
                             <p style={{ color: invertColor(e.color, true), opacity: 0.3 }}>#{e.codigo}</p>
                         </div>
-                        <div className="menu">
-                            <img src={process.env.PUBLIC_URL + "icons/ic_menulight.svg"} alt="" />
-                        </div>
+                        <ISMenu id={e._id} />
                     </div>
                     <p className="list__item-description">{e.descripcion}</p>
                 </div>

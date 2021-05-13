@@ -132,11 +132,19 @@
                         justify-content: flex-end;
                         border-radius: 100px;
                         align-items: center;
+                        position: relative;
+                        &__container {
+                            top: 0;
+                            right: 0;
+                            position: absolute;
+                            
+                        }
                         > img {
                             padding: 5px;
                         }
                         &:hover {
-                            transform: scale(1.2);
+                            background-color: $lightbluebg;
+                            // transform: scale(1.2);
                         }
                     }
                 }
