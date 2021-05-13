@@ -71,7 +71,7 @@ const ItemSelector = (props) => {
         </div>
         <div className="ph__flex-column list__container">
             {itemsToDisplay.map(e => {
-                return (<div className="list__item" key={e._id}>
+                return (<div className="list__item" key={e._id} onClick={() => props.handleAddDiagnostico(e)}>
                     <div className="list__item-top">
                         <div className="title" style={{ backgroundColor: e.color }}>
                             <p style={{ color: invertColor(e.color, true) }}>{e.nombre}</p>
@@ -87,8 +87,8 @@ const ItemSelector = (props) => {
             })}
         </div>
         <div className="buttons">
-            <input type="button" value="Cancelar" onClick={e => props.setModalType(0)} />
-            <input type="button" value="Crear" onClick={e => props.setModalType(props.selectorType)} />
+            <input type="button" value="Cancelar" onClick={e => { props.setModalType(0) }} />
+            <input type="button" value="Crear" onClick={e => { props.setModalType(props.selectorType) }} />
         </div>
     </>);
 }

@@ -98,6 +98,7 @@ class App extends Component {
         setModalData={this.setModalData}
         loadData={this.handleDescriptionLoad}
         selectorType={'cdi'}
+      // handleAddDiagnostico={this.handleAddDiagnostico}
       />;
     } else if (this.state.modalType === "isS") {
       /**Abrir el selctor de items con las opciones de los diagnostico */
@@ -106,6 +107,7 @@ class App extends Component {
         setModalData={this.setModalData}
         loadData={this.handleDiagnosticoLoad}
         selectorType={'cd'}
+        handleAddDiagnostico={this.handleAddDiagnostico}
       />;
     }
   }
@@ -127,15 +129,46 @@ class App extends Component {
   handleDescripcionUpload = async (args) => {
     console.log('subiendo descripcion')
     const descripcion = await ipcRenderer.invoke('agregar-descripcion', args)
-    console.log(descripcion)
-
+    console.log('Descripcion subida', descripcion)
   }
 
   handleDiagnosticoUpload = async (args) => {
-    console.log('subiendo diagnostico')
 
     const diagnostico = await ipcRenderer.invoke('agregar-diagnostico', args);
-    console.log(diagnostico)
+
+    console.log('diagnostico subido', diagnostico)
+  }
+
+  /**Agrega diagnostico al paciente */
+  handleAddDiagnostico = (diagnostico) => {
+
+    var alreadyExist = false;
+    
+    var personaEditable = this.state.openTabs.slice();
+
+    //Verificar si el diagnostico ya ha sido agregado 
+    personaEditable[this.state.currentTab].diagnosticos.forEach(e => {
+    
+      if (e._id === diagnostico._id) alreadyExist = true;
+   
+    });
+
+    if (alreadyExist) return;
+
+    personaEditable[this.state.currentTab].diagnosticos.push(diagnostico);
+
+    this.setState({ openTabs: personaEditable });
+
+  }
+
+  /**Eliminar diagnostico de la ventana actual */
+  handleRemoveDiagnostico = (id) => {
+
+    const openTabs = this.state.openTabs.slice();
+
+    openTabs[this.state.currentTab].diagnosticos.filter((e => e._id !== id));
+
+    this.setState({ openTabs: openTabs });
 
   }
 
