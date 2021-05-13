@@ -75,7 +75,7 @@ function createLocalDB() {
 
     /** args: nombre, descripcion del diagnostico*/
     ipcMain.handle('agregar-diagnostico', async (evt, args) => {
-        
+
         const diagnostico = await controladorDiagnosticos.agregar(args);
 
         return diagnostico;
@@ -89,6 +89,14 @@ function createLocalDB() {
 
         return diagnostico;
 
+    });
+
+    ipcMain.handle('borrar-diagnostico', async (evt, args) => {
+    
+        const diagnostico = await controladorDiagnosticos.borrar(args);
+    
+        return diagnostico;
+    
     });
 }
 

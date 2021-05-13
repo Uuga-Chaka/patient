@@ -107,8 +107,8 @@ class App extends Component {
         setModalData={this.setModalData}
         loadData={this.handleDiagnosticoLoad}
         selectorType={'cd'}
-        handleAddDiagnostico={this.handleAddDiagnostico}
-        handleRemoveDiagnostico={this.handleRemoveDiagnostico}
+        handleAdd={this.handleAddDiagnostico}
+        handleRemove={this.handleDeleteDiagnostico}
       />;
     }
   }
@@ -162,7 +162,7 @@ class App extends Component {
 
   }
 
-  /**Eliminar diagnostico del paciente actual actual */
+  /**Eliminar diagnostico del paciente actual en el estado */
   handleRemoveDiagnostico = (id) => {
 
     const openTabs = this.state.openTabs.slice();
@@ -172,6 +172,17 @@ class App extends Component {
     openTabs[this.state.currentTab].diagnosticos = removed;
 
     this.setState({ openTabs: openTabs });
+
+  }
+
+  /**Eliminar un diagnostico de la base de datos */
+  handleDeleteDiagnostico = async (id, setData, data) => {
+
+    const diagnostico = await ipcRenderer.invoke('borrar-diagnostico', id);
+
+    const newDiagnostico = data.filter(e => e._id !== diagnostico);
+
+    setData(newDiagnostico);
 
   }
 

@@ -777,12 +777,12 @@ input[type=color]::-webkit-color-swatch {
   overflow: auto;
 }
 .modal .modalBox .list__container .list__item {
+  cursor: pointer;
   background-color: white;
   border-radius: 13px 7px 7px 7px;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-  overflow: hidden;
 }
 .modal .modalBox .list__container .list__item:last-child {
   margin-bottom: 0;
@@ -808,15 +808,20 @@ input[type=color]::-webkit-color-swatch {
   font-size: 14px;
 }
 .modal .modalBox .list__container .list__item-top .menu {
-  margin-right: 10px;
+  margin-right: 3px;
+  margin-top: 3px;
   cursor: pointer;
   transition: transform 0.2s;
-  width: 20px;
+  width: 25px;
+  height: 25px;
   display: flex;
   justify-content: flex-end;
   border-radius: 100px;
   align-items: center;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .modal .modalBox .list__container .list__item-top .menu__container {
   top: 0;
@@ -824,7 +829,8 @@ input[type=color]::-webkit-color-swatch {
   position: absolute;
 }
 .modal .modalBox .list__container .list__item-top .menu > img {
-  padding: 5px;
+  margin: 0px;
+  padding: 0;
 }
 .modal .modalBox .list__container .list__item-top .menu:hover {
   background-color: #EAF0FF;

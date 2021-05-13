@@ -51,6 +51,7 @@ const ItemSelector = (props) => {
     const [itemsToDisplay, setItemsToDisplay] = useState([]);
 
     useEffect(() => {
+        console.log('Componente recargado')
         props.loadData(setItemsToDisplay);
 
     }, [props]);
@@ -73,13 +74,17 @@ const ItemSelector = (props) => {
         </div>
         <div className="ph__flex-column list__container">
             {itemsToDisplay.map(e => {
-                return (<div className="list__item" key={e._id} onClick={() => props.handleAddDiagnostico(e)}>
+                return (<div className="list__item" key={e._id} onClick={() => props.handleAdd(e)}>
                     <div className="list__item-top">
                         <div className="title" style={{ backgroundColor: e.color }}>
                             <p style={{ color: invertColor(e.color, true) }}>{e.nombre}</p>
                             <p style={{ color: invertColor(e.color, true), opacity: 0.3 }}>#{e.codigo}</p>
                         </div>
-                        <ISMenu id={e._id} />
+                        <ISMenu id={e._id}
+                            handleRemove={props.handleRemove}
+                            itemsToDisplay={itemsToDisplay}
+                            setItemsToDisplay={setItemsToDisplay}
+                        />
                     </div>
                     <p className="list__item-description">{e.descripcion}</p>
                 </div>

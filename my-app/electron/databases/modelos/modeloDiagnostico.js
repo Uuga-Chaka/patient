@@ -26,6 +26,21 @@ function agregar(args) {
 
 function borrar(id) {
 
+    return new Promise((resolve, reject) => {
+
+        collection.remove({ _id: id }, (err, diagnostico) => {
+
+            if (!err) {
+                console.log('se borro exitosamente', diagnostico);
+                resolve(id)
+            };
+
+            reject(err);
+
+        })
+
+    })
+
 }
 
 function actualizar(id, args) {

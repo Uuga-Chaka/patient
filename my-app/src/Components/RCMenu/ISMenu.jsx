@@ -40,7 +40,7 @@ const ISMenu = (props) => {
             ref={menuRef}
             onClick={e => e.stopPropagation()}
             style={{ display: showMenu ? 'block' : 'none' }}>
-            <div className="PLIMenu_action" onClick={() => console.log(props.id)}>
+            <div className="PLIMenu_action" onClick={() => props.handleRemove(props.id, props.setItemsToDisplay, props.itemsToDisplay)}>
                 <p >Eliminar</p>
             </div>
             <div className="PLIMenu_action" onClick={() => console.log('editar')}>
