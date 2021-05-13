@@ -51,7 +51,7 @@ const Tab = ({ nombre, handleTabChange, index, handleTabClosing, id }) => {
     </div>)
 }
 
-const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEdit, handleTabChange, handleTabClosing, handleModalType }) => {
+const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEdit, handleTabChange, handleTabClosing, handleModalType, handleRemoveDiagnostico }) => {
 
 
     return (
@@ -129,7 +129,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                     style={{ backgroundColor: e.color }}
                                 >
                                     <div className="d-left">
-                                        <img className="diagnostico-close" src={process.env.PUBLIC_URL + "icons/ic_close.svg"} alt="close" />
+                                        <img className="diagnostico-close" onClick={() => handleRemoveDiagnostico(e._id)} src={process.env.PUBLIC_URL + "icons/ic_close.svg"} alt="close" />
                                         <p className="diagnostico-nombre"
                                             style={{ color: invertColor(e.color, true) }}>{e.nombre}</p>
                                     </div>

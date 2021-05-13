@@ -371,6 +371,8 @@ input[type=color]::-webkit-color-swatch {
 }
 .patient-container .patientInfo-container .sesions-container .diagnostico-container .diagnostico-items .diagnostico-item {
   background-color: #8006fa;
+  margin-right: 5px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

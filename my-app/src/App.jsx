@@ -108,6 +108,7 @@ class App extends Component {
         loadData={this.handleDiagnosticoLoad}
         selectorType={'cd'}
         handleAddDiagnostico={this.handleAddDiagnostico}
+        handleRemoveDiagnostico={this.handleRemoveDiagnostico}
       />;
     }
   }
@@ -143,14 +144,14 @@ class App extends Component {
   handleAddDiagnostico = (diagnostico) => {
 
     var alreadyExist = false;
-    
+
     var personaEditable = this.state.openTabs.slice();
 
     //Verificar si el diagnostico ya ha sido agregado 
     personaEditable[this.state.currentTab].diagnosticos.forEach(e => {
-    
+
       if (e._id === diagnostico._id) alreadyExist = true;
-   
+
     });
 
     if (alreadyExist) return;
@@ -161,12 +162,14 @@ class App extends Component {
 
   }
 
-  /**Eliminar diagnostico de la ventana actual */
+  /**Eliminar diagnostico del paciente actual actual */
   handleRemoveDiagnostico = (id) => {
 
     const openTabs = this.state.openTabs.slice();
 
-    openTabs[this.state.currentTab].diagnosticos.filter((e => e._id !== id));
+    const removed = openTabs[this.state.currentTab].diagnosticos.filter((e => e._id !== id));
+
+    openTabs[this.state.currentTab].diagnosticos = removed;
 
     this.setState({ openTabs: openTabs });
 
@@ -370,6 +373,7 @@ class App extends Component {
               handleTabChange={this.handleTabChange}
               handleTabClosing={this.handleTabClosing}
               handleModalType={this.setModalType}
+              handleRemoveDiagnostico={this.handleRemoveDiagnostico}
             />
           }
           {
