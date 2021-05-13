@@ -1,5 +1,5 @@
 const Datastore = require('nedb');
-const collection = new Datastore({ filename: './diagnosticos.l7' });
+const collection = new Datastore({ filename: './descripcion.l7' });
 
 collection.loadDatabase(err => { if (err) console.log(err) });
 
@@ -9,7 +9,6 @@ function agregar(args) {
     var diagnostico = {
         nombre: args.nombre,
         descripcion: args.descripcion,
-        codigo: args.codigo,
         color: args.color
     }
 
@@ -25,6 +24,18 @@ function agregar(args) {
 }
 
 function borrar(id) {
+
+    return new Promise((resolve, reject) => {
+
+        collection.remove(id, (err, response) => {
+
+            if (!err) resolve(response);
+
+            reject(err);
+
+        })
+
+    })
 
 }
 

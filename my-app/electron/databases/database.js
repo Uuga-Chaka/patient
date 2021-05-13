@@ -3,12 +3,15 @@ const { ipcMain } = require('electron');
 
 //Importar los modelos
 const controladorDiagnosticos = require('./controller/controladorDiagnostico');
+const controladorDescripcion = require('./controller/controladorDescripcion');
 const controladorPersonas = require('./controller/controladorPersona');
 const controladorSesiones = require('./controller/controladorSesion');
 
 //Importar la base de datos que se va a utilizar
 
 function createLocalDB() {
+
+    /**Guarda todo el documento, sesiones, diagnosticos */
     ipcMain.handle('save-document', async (evt, args) => {
 
         args.sesiones = await controladorSesiones.agregar(args.sesiones);
@@ -51,13 +54,6 @@ function createLocalDB() {
 
     });
 
-    ipcMain.handle('load-diagnosticos', async (evt, args) => {
-
-        const description = await controladorDiagnosticos.encontrar(args);
-
-        return description;
-
-    });
 
     ipcMain.handle('load-sesion', async (evt, args) => {
 
@@ -67,7 +63,33 @@ function createLocalDB() {
 
         return sesiones;
 
-    })
+    });
+
+    ipcMain.handle('agregar-descripcion', async (evt, args) => {
+
+        const description = await controladorDescripcion.agregar(args);
+
+        return description;
+
+    });
+
+    /** args: nombre, descripcion del diagnostico*/
+    ipcMain.handle('agregar-diagnostico', async (evt, args) => {
+        
+        const diagnostico = await controladorDiagnosticos.agregar(args);
+
+        return diagnostico;
+
+    });
+
+
+    ipcMain.handle('load-diagnosticos', async (evt, args) => {
+
+        const diagnostico = await controladorDiagnosticos.encontrar(args);
+
+        return diagnostico;
+
+    });
 }
 
 module.exports = { createLocalDB };

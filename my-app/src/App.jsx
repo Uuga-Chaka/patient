@@ -83,11 +83,13 @@ class App extends Component {
       return <CrearDiagnostico
         setModalType={this.setModalType}
         setModalData={this.setModalData}
+        create={this.handleDiagnosticoUpload}
       />
     } else if (this.state.modalType === "cdi") {
       return <CrearDescripcion
         setModalType={this.setModalType}
         setModalData={this.setModalData}
+        create={this.handleDescripcionUpload}
       />
     } else if (this.state.modalType === "isD") {
       /**Abrir el selctor de items con las opciones de la descripciones */
@@ -95,15 +97,15 @@ class App extends Component {
         setModalType={this.setModalType}
         setModalData={this.setModalData}
         loadData={this.handleDescriptionLoad}
-        selectorType={'cd'}
+        selectorType={'cdi'}
       />;
     } else if (this.state.modalType === "isS") {
-      /**Abrir el selctor de items con las opciones de la sesiones */
+      /**Abrir el selctor de items con las opciones de los diagnostico */
       return <ItemSelector
         setModalType={this.setModalType}
         setModalData={this.setModalData}
         loadData={this.handleDiagnosticoLoad}
-        selectorType={'cdi'}
+        selectorType={'cd'}
       />;
     }
   }
@@ -111,8 +113,7 @@ class App extends Component {
   handleDiagnosticoLoad = async (setData) => {
 
     const diagnostico = await ipcRenderer.invoke('load-diagnosticos', {});
-    console.log(diagnostico)
-    //    setData(diagnosticos);
+    setData(diagnostico);
   }
 
   handleDescripcionLoad = async (setData) => {
@@ -124,13 +125,14 @@ class App extends Component {
   }
 
   handleDescripcionUpload = async (args) => {
-
+    console.log('subiendo descripcion')
     const descripcion = await ipcRenderer.invoke('agregar-descripcion', args)
     console.log(descripcion)
 
   }
 
   handleDiagnosticoUpload = async (args) => {
+    console.log('subiendo diagnostico')
 
     const diagnostico = await ipcRenderer.invoke('agregar-diagnostico', args);
     console.log(diagnostico)

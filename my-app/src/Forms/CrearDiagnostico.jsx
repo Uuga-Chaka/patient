@@ -43,11 +43,17 @@ const CrearDiagnostico = (props) => {
         </div>
         <div className="ph__flex-column">
             <p>Descripción del diagnostico</p>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                value={formJson.descripcion}
+                onChange={e => setFormJson({ ...formJson, descripcion: e.target.value })}></textarea>
         </div>
         <div className="buttons">
             <input type="button" value="Cancelar" onClick={e => props.setModalType(0)} />
-            <input type="button" value="Guardar" onClick={e => console.log('clicked')} />
+            <input type="button" value="Guardar" onClick={e => props.create(formJson)} />
         </div>
     </>);
 }
