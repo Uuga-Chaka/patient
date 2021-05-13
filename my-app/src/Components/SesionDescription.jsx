@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
+import ISMenu from "./RCMenu/ISMenu";
 
-const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit }) => {
+const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit, handleDeleteSesion }) => {
 
 
     const [textAreaSize, setTextAreaSize] = useState('auto')
@@ -28,7 +29,13 @@ const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit })
                 </div>
                 <div className="sesion__header-action">
                     <p>Día #</p>
-                    <img className="menu" src={process.env.PUBLIC_URL + 'icons/ic_menusesion.svg'} alt="" />
+                    <ISMenu
+                        id={value._id}
+                        index={sesionIndex}
+                        handleRemove={handleDeleteSesion}
+                    // itemsToDisplay={itemsToDisplay}
+                    // setItemsToDisplay={setItemsToDisplay}
+                    />
                 </div>
             </div>
             <textarea

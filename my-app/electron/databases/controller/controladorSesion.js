@@ -14,9 +14,9 @@ async function agregar(args) {
     }
 }
 
-function borrar(id) {
+async function borrar(id) {
 
-    Modelo.borrar(id);
+    return await Modelo.borrar(id);
 }
 
 function actualizar(id, args) {

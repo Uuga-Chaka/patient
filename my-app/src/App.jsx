@@ -186,6 +186,24 @@ class App extends Component {
 
   }
 
+  handleDeleteSesion = (id) => {
+
+    const openTabs = this.state.openTabs.slice();
+
+    const removed = openTabs[this.state.currentTab].sesiones.filter(((e, i) => {
+
+      if (e._id) return e._id !== id;
+
+      return id !== i;
+
+    }));
+
+    openTabs[this.state.currentTab].sesiones = removed;
+
+    this.setState({ openTabs: openTabs });
+
+  }
+
   //Crear un nuevo paciente
   crearPaciente = async () => {
     var paciente = {
@@ -379,11 +397,12 @@ class App extends Component {
             <PatientEditor
               openTabs={this.state.openTabs}
               currentTab={this.state.currentTab}
-              handleHistoryEdit={this.handleHistoryEdit}
-              handleSesionEdit={this.handleSesionEdit}
+              handleModalType={this.setModalType}
               handleTabChange={this.handleTabChange}
               handleTabClosing={this.handleTabClosing}
-              handleModalType={this.setModalType}
+              handleSesionEdit={this.handleSesionEdit}
+              handleHistoryEdit={this.handleHistoryEdit}
+              handleDeleteSesion={this.handleDeleteSesion}
               handleRemoveDiagnostico={this.handleRemoveDiagnostico}
             />
           }

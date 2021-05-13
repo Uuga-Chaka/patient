@@ -103,6 +103,41 @@
                 flex-direction: column;
 
                 min-height: 0;
+
+                .sesion__header {
+                    &:nth-child(1) {
+                        .menu {
+                            margin-right: 3px;
+                            margin-top: 3px;
+                            cursor: pointer;
+                            transition: transform 0.2s;
+                            // background-color: red;
+                       
+                            display: flex;
+                            justify-content: flex-end;
+                            border-radius: 100px;
+                            align-items: center;
+                            position: relative;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $white;
+                            &__container {
+                                top: 0;
+                                right: 0;
+                                position: absolute;
+                            }
+                            > img {
+                                margin: 0px;
+                                padding: 0;
+                            }
+                            &:hover {
+                                background-color: $lightbluebg;
+                                // transform: scale(1.2);
+                            }
+                        }
+                    }
+                }
                 .diagnostico {
                     &-title {
                         margin: 0;
@@ -234,7 +269,6 @@
                                     margin-right: 5px;
                                 }
                                 > .menu {
-                                    background-color: $whiteblue;
                                     padding: 7px 11px;
                                     border-radius: 100px;
                                     margin-left: 10px;

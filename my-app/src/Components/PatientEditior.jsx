@@ -51,7 +51,7 @@ const Tab = ({ nombre, handleTabChange, index, handleTabClosing, id }) => {
     </div>)
 }
 
-const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEdit, handleTabChange, handleTabClosing, handleModalType, handleRemoveDiagnostico }) => {
+const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEdit, handleTabChange, handleTabClosing, handleModalType, handleRemoveDiagnostico, handleDeleteSesion }) => {
 
 
     return (
@@ -161,6 +161,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                     key={e._id ? e._id : i}
                                     sesionIndex={i}
                                     currentTab={currentTab}
+                                    handleDeleteSesion={handleDeleteSesion}
                                     handleSesionEdit={handleSesionEdit} />
                                 )
                             })

@@ -21,6 +21,20 @@ function agregar(args) {
 
 function borrar(id) {
 
+    return new Promise((resolve, reject) => {
+
+        if (id.id === null) reject('bad');
+
+        collection.remove(id, (err, response) => {
+
+            if (!err) resolve(response);
+
+            reject(err);
+
+        });
+
+    });
+
 }
 
 function actualizar(id, args) {

@@ -31,8 +31,9 @@ function borrar(id) {
         collection.remove({ _id: id }, (err, diagnostico) => {
 
             if (!err) {
-                console.log('se borro exitosamente', diagnostico);
+
                 resolve(id)
+         
             };
 
             reject(err);

@@ -353,6 +353,33 @@ input[type=color]::-webkit-color-swatch {
   flex-direction: column;
   min-height: 0;
 }
+.patient-container .patientInfo-container .sesions-container .sesion__header:nth-child(1) .menu {
+  margin-right: 3px;
+  margin-top: 3px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.patient-container .patientInfo-container .sesions-container .sesion__header:nth-child(1) .menu__container {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+.patient-container .patientInfo-container .sesions-container .sesion__header:nth-child(1) .menu > img {
+  margin: 0px;
+  padding: 0;
+}
+.patient-container .patientInfo-container .sesions-container .sesion__header:nth-child(1) .menu:hover {
+  background-color: #EAF0FF;
+}
 .patient-container .patientInfo-container .sesions-container .diagnostico-title {
   margin: 0;
 }
@@ -484,7 +511,6 @@ input[type=color]::-webkit-color-swatch {
   margin-right: 5px;
 }
 .patient-container .patientInfo-container .sesions-container .sesions__description-container .sesion__container .sesion__header-action > .menu {
-  background-color: #b3cfe2;
   padding: 7px 11px;
   border-radius: 100px;
   margin-left: 10px;

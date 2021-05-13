@@ -65,6 +65,12 @@ function createLocalDB() {
 
     });
 
+    ipcMain.handle('borrar-sesion', async (evt, args) => {
+        
+        const sesion = await controladorSesiones.borrar(id);
+
+    });
+
     ipcMain.handle('agregar-descripcion', async (evt, args) => {
 
         const description = await controladorDescripcion.agregar(args);
@@ -92,11 +98,11 @@ function createLocalDB() {
     });
 
     ipcMain.handle('borrar-diagnostico', async (evt, args) => {
-    
+
         const diagnostico = await controladorDiagnosticos.borrar(args);
-    
+
         return diagnostico;
-    
+
     });
 }
 
