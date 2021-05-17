@@ -1,3 +1,8 @@
+import ic_addsesion from "./icons/ic_addsesion.svg";
+import ic_minimize from "./icons/ic_minimize.svg";
+import ic_maximize from "./icons/ic_maximize.svg";
+import ic_quit from "./icons/ic_quit.svg";
+
 import React, { Component } from 'react';
 import './index.css';
 import PatientEditor from './Components/PatientEditior';
@@ -8,6 +13,8 @@ import CrearDescripcion from './Forms/CrearDescripcion';
 import ItemSelector from './Forms/ItemSelector';
 import PLIMenu from './Components/RCMenu/PLIMenu';
 const { ipcRenderer } = window.require('electron');
+
+
 // import { ipcRenderer } from 'electron';
 //Estructura
 // {
@@ -374,13 +381,13 @@ class App extends Component {
           </div>
           <div className="window__option">
             <div className="square-icon" onClick={() => this.minimize()}>
-              <img src={process.env.PUBLIC_URL + "icons/ic_minimize.svg"} alt="" />
+              <img src={ic_minimize} alt="" />
             </div>
             <div className="square-icon" onClick={() => this.maximize()}>
-              <img src={process.env.PUBLIC_URL + "icons/ic_maximize.svg"} alt="" />
+              <img src={ic_maximize} alt="" />
             </div>
             <div className="square-icon" onClick={() => this.quit()}>
-              <img src={process.env.PUBLIC_URL + "icons/ic_quit.svg"} alt="" />
+              <img src={ic_quit} alt="" />
             </div>
           </div>
         </div>
@@ -409,7 +416,7 @@ class App extends Component {
           {
             this.state.openTabs.length > 0 &&
             <div className="icons-sesion" onClick={() => { this.addSesion() }}>
-              <img src={process.env.PUBLIC_URL + "icons/ic_addsesion.svg"} alt="" />
+              <img src={ic_addsesion} alt="" />
             </div>
           }
         </div>

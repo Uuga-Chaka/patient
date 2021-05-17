@@ -1,3 +1,8 @@
+import ic_close from "../icons/ic_close.svg"
+import ic_id from "../icons/ic_id.svg"
+import ic_calendar from "../icons/ic_calendar.svg"
+import ic_add from "../icons/ic_add.svg"
+
 import SesionDescription from "./SesionDescription"
 
 function padZero(str, len) {
@@ -41,7 +46,7 @@ const Tab = ({ nombre, handleTabChange, index, handleTabClosing, id }) => {
             {nombre.substring(0, 22)}
             {nombre.length > 21 && "..."}
         </p>
-        <img src={process.env.PUBLIC_URL + "icons/ic_close.svg"}
+        <img src={ic_close}
             alt="close tab"
             onClick={e => {
                 e.stopPropagation();
@@ -80,7 +85,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                             handleHistoryEdit(currentTab, e.target.name, e.target.value)
                         }} />
                     <div className="patient-data__input">
-                        <img src={process.env.PUBLIC_URL + "icons/ic_id.svg"} alt="" />
+                        <img src={ic_id} alt="" />
                         <select
                             name="tipo_documento"
                             id=""
@@ -99,7 +104,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                         />
                     </div>
                     <div className="patient-data__input">
-                        <img src={process.env.PUBLIC_URL + "icons/ic_calendar.svg"} alt="" />
+                        <img src={ic_calendar} alt="" />
                         <input
                             type="date"
                             name="fecha_nacimiento"
@@ -129,7 +134,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                     style={{ backgroundColor: e.color }}
                                 >
                                     <div className="d-left">
-                                        <img className="diagnostico-close" onClick={() => handleRemoveDiagnostico(e._id)} src={process.env.PUBLIC_URL + "icons/ic_close.svg"} alt="close" />
+                                        <img className="diagnostico-close" onClick={() => handleRemoveDiagnostico(e._id)} src={ic_close} alt="close" />
                                         <p className="diagnostico-nombre"
                                             style={{ color: invertColor(e.color, true) }}>{e.nombre}</p>
                                     </div>
@@ -138,7 +143,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                 </div>
                             })}
                         </div>
-                        <img className="diagnostico-add" onClick={() => handleModalType('isS')} alt="add description" src={process.env.PUBLIC_URL + "icons/ic_add.svg"} />
+                        <img className="diagnostico-add" onClick={() => handleModalType('isS')} alt="add description" src={ic_add} />
                     </div>
                     <div className="sesiones-contador__container">
                         <p>Sesiones</p>

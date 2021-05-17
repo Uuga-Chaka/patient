@@ -1,6 +1,6 @@
+import ic_menulight from "../../icons/ic_menulight.svg";
+
 import { useEffect, useRef, useState } from "react";
-
-
 
 const ISMenu = (props) => {
 
@@ -35,7 +35,7 @@ const ISMenu = (props) => {
 
     return (<div className="menu"
         onClick={e => { e.stopPropagation(); setShowMenu(true) }}>
-        <img src={process.env.PUBLIC_URL + "icons/ic_menulight.svg"} alt="menu" />
+        <img src={ic_menulight} alt="menu" />
         <div className="menu__container PLIMenu"
             ref={menuRef}
             onClick={e => e.stopPropagation()}

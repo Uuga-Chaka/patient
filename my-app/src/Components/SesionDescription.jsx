@@ -1,3 +1,7 @@
+import ic_calendar from "../icons/ic_calendar.svg";
+import ic_arrow_down from "../icons/ic_arrow-down.svg";
+
+
 import React, { useEffect, useState, useRef } from "react";
 import ISMenu from "./RCMenu/ISMenu";
 
@@ -20,7 +24,7 @@ const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit, h
         <div className="sesion__container">
             <div className="sesion__header">
                 <div className="sesion__header-action">
-                    <img className="calendar" src={process.env.PUBLIC_URL + 'icons/ic_calendar.svg'} alt="" />
+                    <img className="calendar" src={ic_calendar} alt="" />
                     <input
                         type="date"
                         name="fecha"
@@ -57,7 +61,7 @@ const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit, h
                 <p>
                     {!textAVisibility ? "Mostrar más" : "Mostrar  menos"}
                 </p>
-                <img src={process.env.PUBLIC_URL + "icons/ic_arrow-down.svg"} alt="" />
+                <img src={ic_arrow_down} alt="" />
                 <input
                     checked={textAVisibility}
                     value={textAVisibility}

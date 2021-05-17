@@ -1,3 +1,8 @@
+import ic_search from "../icons/ic_search.svg";
+import ic_filter from "../icons/ic_filter.svg";
+import ic_add from "../icons/ic_add.svg";
+import ic_add_patient from "../icons/ic_add-patient.svg";
+
 import { useState } from "react";
 import PatientListItem from "./PatientListItem";
 
@@ -8,9 +13,9 @@ const SearchBar = (props) => {
     return (<div className="searchBar-container">
         <div className="searchBar__search-container">
             <div className="search__input">
-                <img src={process.env.PUBLIC_URL + "./icons/ic_search.svg"} alt="" />
+                <img src={ic_search} alt="" />
                 <input type="text" name="" id="" placeholder="Buscar" />
-                <img src={process.env.PUBLIC_URL + "./icons/ic_filter.svg"} alt="" />
+                <img src={ic_filter} alt="" />
             </div>
             <div className="searchBar__filters">
                 <div className="allfilters" style={isFilterVisible ? { display: "block" } : { display: "none" }}>
@@ -28,7 +33,7 @@ const SearchBar = (props) => {
                         <div className="ph__flex-row add_diagnosis">
                             <p>Diagnostico </p>
                             <div className="circle-icon" onClick={() => { props.handleModalType('isD') }}>
-                                <img src={process.env.PUBLIC_URL + "./icons/ic_add.svg"} alt="" className="rotate" />
+                                <img src={ic_add} alt="" className="rotate" />
                             </div>
                         </div>
                         <div className="diagnosticos">
@@ -47,7 +52,7 @@ const SearchBar = (props) => {
             </div>
         </div>
         <div className="create-patient" onClick={() => props.crearPaciente()}>
-            <img src={process.env.PUBLIC_URL + "./icons/ic_add-patient.svg"} alt="" />
+            <img src={ic_add_patient} alt="" />
             <p  >Crear nuevo paciente</p>
         </div>
         <div className="searchBar-patients__container">
