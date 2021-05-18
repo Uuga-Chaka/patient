@@ -64,12 +64,24 @@ function encontrar(query) {
         console.log(query.nombre);
     }
 
+    // if (query.hasOwnProperty('diagnosticos')) {
+
+    //     query.diagnosticos = { diagnosticos: { $in: query.diagnosticos } }
+
+    // }
+
     return new Promise((resolve, reject) => {
+      
         collection.find(query, (err, paciente) => {
+  
             if (err) reject(err);
+  
             resolve(paciente);
+  
         });
-    })
+  
+    });
+
 }
 
 module.exports = {

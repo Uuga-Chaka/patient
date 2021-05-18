@@ -179,7 +179,7 @@ class App extends Component {
 
         if (filtros.diagnosticos.length > 0) {
 
-          filterReq.diagnosticos = filtros.diagnosticos.map(e => e._id);
+          filterReq["diagnosticos._id"] = { $in: filtros.diagnosticos.map(e => e._id) };
 
         }
 
@@ -187,7 +187,11 @@ class App extends Component {
 
     }
 
+    console.log(filterReq);
+
     const pacientes = await ipcRenderer.invoke('find-patient', filterReq);
+
+    console.log(pacientes);
 
     this.setState({ personas: pacientes })
 
