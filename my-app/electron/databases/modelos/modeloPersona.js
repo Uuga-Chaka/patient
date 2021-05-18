@@ -59,7 +59,7 @@ function encontrar(query) {
 
     if (query.hasOwnProperty('nombre')) {
 
-        query.nombre = { $regex: new RegExp("\/" + query.nombre + "\/") }
+        query.nombre = { $regex: new RegExp(query.nombre, "gi") }
 
         console.log(query.nombre);
     }
