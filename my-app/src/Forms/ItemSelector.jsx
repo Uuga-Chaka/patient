@@ -58,11 +58,11 @@ const ItemSelector = (props) => {
 
 
     return (<>
-        <h3>Crear diagnostico</h3>
+        <h3>Selecciona {props.title}</h3>
         <div className="ph__flex-row">
             <label htmlFor="" style={{ width: "100%" }}>
                 <p>
-                    Nombre del diagnostico
+                    Nombre del {props.title}
                 </p>
                 <input
                     type="text"

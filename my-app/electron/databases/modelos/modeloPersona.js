@@ -9,7 +9,7 @@ function agregar(arg) {
     var persona = {
         nombre: arg.nombre,
         tipo_documento: arg.tipo_documento,
-        numero_documento: arg.numero_documento,
+        numero_documento: parseInt(arg.numero_documento),
         fecha_nacimiento: arg.fecha_nacimiento,
         sesiones: arg.sesiones,
         diagnosticos: arg.diagnosticos
@@ -28,7 +28,6 @@ function borrar(id) {
     return new Promise((resolve, reject) => {
         collection.remove(id, (err, obj) => {
             if (!err) {
-                console.log('borradi', obj);
                 resolve(obj);
             }
             reject(err);
@@ -40,7 +39,7 @@ function actualizar(arg) {
     var persona = {
         nombre: arg.nombre,
         tipo_documento: arg.tipo_documento,
-        numero_documento: arg.numero_documento,
+        numero_documento: parseInt(arg.numero_documento),
         fecha_nacimiento: arg.fecha_nacimiento,
         sesiones: arg.sesiones,
         diagnosticos: arg.diagnosticos
@@ -57,6 +56,14 @@ function actualizar(arg) {
 }
 
 function encontrar(query) {
+
+    if (query.hasOwnProperty('nombre')) {
+
+        query.nombre = { $regex: new RegExp("\/" + query.nombre + "\/") }
+
+        console.log(query.nombre);
+    }
+
     return new Promise((resolve, reject) => {
         collection.find(query, (err, paciente) => {
             if (err) reject(err);

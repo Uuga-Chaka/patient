@@ -35,6 +35,13 @@ class App extends Component {
       currentTab: 0,
       openTabs: [],
       personas: [],
+      requestSent: false,
+      sbFiltros: {
+        nombre: "",
+        tipo_documento: "",
+        numero_documento: "",
+        diagnosticos: []
+      },
       RCMenu: {
         isOpen: false,
         actions: [],
@@ -49,20 +56,141 @@ class App extends Component {
     this.RCMenu = React.createRef();
   }
 
+  // Controla el input de los filtros
+  // Y envia el request al backend
+
+  handleFilterChange = (name, value) => {
+
+    console.log(name, value);
+
+    this.setState({ sbFiltros: { ...this.state.sbFiltros, [name]: value } });
+
+    if (this.state.requestSent !== false) {
+
+      clearTimeout(this.state.requestSent);
+
+    }
+
+    this.setState({
+
+      requestSent: setTimeout(() => {
+
+        this.cargarPaciente(this.state.sbFiltros);
+
+        this.setState({ requestSent: false });
+
+      }, 1000)
+
+    });
+
+  }
+
+  //Agrega los diagnosticos al filtro de busqueda de pacientes
+
+  handleFilterDiagnosticAdd = (diagnostico) => {
+
+    let alreadyExist = false;
+
+    const diagnosticos = this.state.sbFiltros.diagnosticos.slice();
+
+    diagnosticos.forEach(e => {
+
+      if (e._id === diagnostico._id) alreadyExist = true;
+
+    });
+
+    if (alreadyExist) return;
+
+    this.setState({ sbFiltros: { ...this.state.sbFiltros, diagnosticos: [...diagnosticos, diagnostico] } }, () => {
+
+      this.cargarPaciente(this.state.sbFiltros);
+
+    });
+
+  }
+
+  //Elimina los diagnosticos del filtro de busqueda de pacientes
+
+  handleFilterDiagnosticRemove = (id) => {
+
+    console.log(id);
+
+    const diagnosticos = this.state.sbFiltros.diagnosticos.filter(e => e._id !== id);
+
+    this.setState({ sbFiltros: { ...this.state.sbFiltros, diagnosticos } }, () => {
+
+      this.cargarPaciente(this.state.sbFiltros);
+
+    });
+
+  }
+
   componentDidMount() {
+
     this.handleDocumentUpload();
+
     this.cargarPaciente();
+
     window.addEventListener('click', this.handleMenuClosing);
+
   }
 
   componentWillUnmount() {
     window.removeEventListener('click', this.handleMenuClosing);
   }
 
-  cargarPaciente = async () => {
-    console.log('pacientes actualizados');
-    const pacientes = await ipcRenderer.invoke('find-patient', {});
+  cargarPaciente = async (filtros = {}) => {
+
+    var filterReq = {}
+
+    if (filtros.hasOwnProperty('tipo_documento')) {
+
+      if (filtros.tipo_documento !== "") {
+
+        filterReq.tipo_documento = filtros.tipo_documento;
+
+      }
+
+    }
+
+    if (filtros.hasOwnProperty('numero_documento')) {
+
+      if (filtros.numero_documento !== "") {
+
+        filterReq.numero_documento = parseInt(filtros.numero_documento);
+
+      }
+
+    }
+
+    if (filtros.hasOwnProperty('nombre')) {
+
+      if (filtros.nombre !== "") {
+
+        filterReq.nombre = filtros.nombre;
+
+      }
+
+    }
+
+    if (filtros.hasOwnProperty('diagnosticos')) {
+
+      if (Array.isArray(filtros.diagnosticos)) {
+
+        if (filtros.diagnosticos.length > 0) {
+
+          filterReq.diagnosticos = filtros.diagnosticos.map(e => e._id);
+
+        }
+
+      }
+
+    }
+
+    const pacientes = await ipcRenderer.invoke('find-patient', filterReq);
+
     this.setState({ personas: pacientes })
+
   }
 
   //Uplaod File and Update File
@@ -101,20 +229,33 @@ class App extends Component {
     } else if (this.state.modalType === "isD") {
       /**Abrir el selctor de items con las opciones de la descripciones */
       return <ItemSelector
+        title={"descripciones"}
         setModalType={this.setModalType}
         setModalData={this.setModalData}
-        loadData={this.handleDescriptionLoad}
+        loadData={this.handleDescripcionLoad}
         selectorType={'cdi'}
-      // handleAddDiagnostico={this.handleAddDiagnostico}
+        handleAddDiagnostico={this.handleAddDiagnostico}
       />;
     } else if (this.state.modalType === "isS") {
       /**Abrir el selctor de items con las opciones de los diagnostico */
       return <ItemSelector
+        title={"diagnosticos"}
         setModalType={this.setModalType}
         setModalData={this.setModalData}
         loadData={this.handleDiagnosticoLoad}
         selectorType={'cd'}
         handleAdd={this.handleAddDiagnostico}
+        handleRemove={this.handleDeleteDiagnostico}
+      />;
+    } else if (this.state.modalType === "isSf") {
+      /**Abrir el selctor de items con las opciones de los diagnostico */
+      return <ItemSelector
+        title={"diagnosticos"}
+        setModalType={this.setModalType}
+        setModalData={this.setModalData}
+        loadData={this.handleDiagnosticoLoad}
+        selectorType={'cd'}
+        handleAdd={this.handleFilterDiagnosticAdd}
         handleRemove={this.handleDeleteDiagnostico}
       />;
     }
@@ -127,10 +268,10 @@ class App extends Component {
   }
 
   handleDescripcionLoad = async (setData) => {
-
-    const descripcion = await ipcRenderer.invoke('load-descripcion', {});
+    console.log(setData);
+    // const descripcion = await ipcRenderer.invoke('load-descripcion', {});
     // setData(sesion);
-    console.log(descripcion)
+    // console.log(descripcion)
 
   }
 
@@ -393,12 +534,15 @@ class App extends Component {
         </div>
         <div className="mainContent">
           <SearchBar
-            handleTabOpening={this.handleTabOpening}
-            crearPaciente={this.crearPaciente}
+            filter={this.state.sbFiltros}
             patients={this.state.personas}
-            handleMenuOpening={this.handleMenuOpening}
+            crearPaciente={this.crearPaciente}
             handleModalType={this.setModalType}
+            handleTabOpening={this.handleTabOpening}
+            handleMenuOpening={this.handleMenuOpening}
             handlePLIMenuActions={this.PLIMenuActions}
+            handleFilterChange={this.handleFilterChange}
+            handleFilterDiagnosticRemove={this.handleFilterDiagnosticRemove}
           />
           {this.state.openTabs.length > 0 &&
             <PatientEditor

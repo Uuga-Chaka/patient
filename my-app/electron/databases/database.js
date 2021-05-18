@@ -32,7 +32,11 @@ function createLocalDB() {
 
     ipcMain.handle('find-patient', async (evt, args) => {
 
+        console.log(args);
+
         const pacientes = await controladorPersonas.encontrar(args);
+
+        console.log(pacientes);
 
         return pacientes;
 
@@ -66,7 +70,7 @@ function createLocalDB() {
     });
 
     ipcMain.handle('borrar-sesion', async (evt, args) => {
-        
+
         const sesion = await controladorSesiones.borrar(id);
 
     });
