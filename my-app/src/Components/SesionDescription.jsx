@@ -5,7 +5,7 @@ import ic_arrow_down from "../icons/ic_arrow-down.svg";
 import React, { useEffect, useState, useRef } from "react";
 import ISMenu from "./RCMenu/ISMenu";
 
-const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit, handleDeleteSesion }) => {
+const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit, handleDeleteSesion, handleModalType }) => {
 
 
     const [textAreaSize, setTextAreaSize] = useState('auto')
@@ -37,6 +37,7 @@ const SesionDescription = ({ value, currentTab, sesionIndex, handleSesionEdit, h
                         id={value._id}
                         index={sesionIndex}
                         handleRemove={handleDeleteSesion}
+                        handleModalType={handleModalType}
                     // itemsToDisplay={itemsToDisplay}
                     // setItemsToDisplay={setItemsToDisplay}
                     />

@@ -74,11 +74,14 @@ const ItemSelector = (props) => {
         </div>
         <div className="ph__flex-column list__container">
             {itemsToDisplay.map(e => {
+                console.log(e);
                 return (<div className="list__item" key={e._id} onClick={() => props.handleAdd(e)}>
                     <div className="list__item-top">
-                        <div className="title" style={{ backgroundColor: e.color }}>
-                            <p style={{ color: invertColor(e.color, true) }}>{e.nombre}</p>
-                            <p style={{ color: invertColor(e.color, true), opacity: 0.3 }}>#{e.codigo}</p>
+                        <div className="title" style={{ backgroundColor: e.color ? e.color : '#AEC5E7' }}>
+                            <p style={{ color: e.color ? invertColor(e.color, true) : '#4E6673' }}>{e.nombre}</p>
+                            {e.codigo &&
+                                <p style={{ color: invertColor(e.color, true), opacity: 0.3 }}>#{e.codigo}</p>
+                            }
                         </div>
                         <ISMenu id={e._id}
                             handleRemove={props.handleRemove}

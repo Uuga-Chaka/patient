@@ -187,11 +187,7 @@ class App extends Component {
 
     }
 
-    console.log(filterReq);
-
     const pacientes = await ipcRenderer.invoke('find-patient', filterReq);
-
-    console.log(pacientes);
 
     this.setState({ personas: pacientes })
 
@@ -273,16 +269,20 @@ class App extends Component {
 
   handleDescripcionLoad = async (setData) => {
     console.log(setData);
-    // const descripcion = await ipcRenderer.invoke('load-descripcion', {});
-    // setData(sesion);
-    // console.log(descripcion)
+    const descripcion = await ipcRenderer.invoke('find-descripcion', {});
+    setData(descripcion);
+    console.log(descripcion)
 
   }
 
-  handleDescripcionUpload = async (args) => {
-    console.log('subiendo descripcion')
-    const descripcion = await ipcRenderer.invoke('agregar-descripcion', args)
-    console.log('Descripcion subida', descripcion)
+  handleDescripcionUpload = (args) => {
+
+    ipcRenderer.invoke('agregar-descripcion', args).then(() => {
+      //Despues de terminar de guardar la descripci'on pasa a la seleccion de descripcion
+      this.setState({ modalType: 'isD' });
+
+    });
+
   }
 
   handleDiagnosticoUpload = async (args) => {
@@ -369,18 +369,23 @@ class App extends Component {
     }
 
     const result = await ipcRenderer.invoke('create-patient', paciente);
-    console.log(result);
+
     this.setState({ personas: [result, ...this.state.personas] });
-    console.log(result);
+
   }
 
   eliminarPaciente = async (pacienteId) => {
+
     const result = await ipcRenderer.invoke('delete-patient', pacienteId);
+
     this.setState({ personas: this.state.personas.filter(e => e._id !== result._id) })
+
   }
 
   minimize = () => {
+
     ipcRenderer.send('minimize');
+
   }
 
   maximize = () => {
@@ -392,7 +397,8 @@ class App extends Component {
   }
 
   setModalType = (modalType) => {
-    // console.log(modalType);
+    // console.log(modalType); 
+    console.log(modalType);
     this.setState({ modalType });
   }
 
@@ -503,9 +509,13 @@ class App extends Component {
       action: async (id) => {
 
         this.setState({ RCMenu: { ...this.state.RCMenu, isOpen: false } })
+
         await ipcRenderer.invoke('delete-patient', { _id: id })
+
         this.setState({ openTabs: this.state.openTabs.filter(e => e.id !== id) })
+
         this.cargarPaciente();
+
       }
 
     }, {
@@ -516,6 +526,8 @@ class App extends Component {
 
     }]
   }
+
+
 
   render() {
     return (

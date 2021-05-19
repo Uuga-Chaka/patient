@@ -77,9 +77,19 @@ function createLocalDB() {
 
     ipcMain.handle('agregar-descripcion', async (evt, args) => {
 
+        console.log(args);
+
         const description = await controladorDescripcion.agregar(args);
 
         return description;
+
+    });
+
+    ipcMain.handle('find-descripcion', async (evt, args) => {
+
+        const descripcion = await controladorDescripcion.encontrar(args);
+
+        return descripcion;
 
     });
 

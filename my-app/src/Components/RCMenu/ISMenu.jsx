@@ -51,8 +51,8 @@ const ISMenu = (props) => {
             }}>
                 <p >Eliminar</p>
             </div>
-            <div className="PLIMenu_action" onClick={() => console.log('editar')}>
-                <p>Editar</p>
+            <div className="PLIMenu_action" onClick={() => props.handleModalType('isD')}>
+                <p>Descripcion</p>
             </div>
         </div>
     </div >);

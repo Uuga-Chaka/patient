@@ -143,7 +143,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                 </div>
                             })}
                         </div>
-                        <img className="diagnostico-add" onClick={() => {handleModalType('isS')}} alt="add description" src={ic_add} />
+                        <img className="diagnostico-add" onClick={() => { handleModalType('isS') }} alt="add description" src={ic_add} />
                     </div>
                     <div className="sesiones-contador__container">
                         <p>Sesiones</p>
@@ -166,6 +166,7 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                                     key={e._id ? e._id : i}
                                     sesionIndex={i}
                                     currentTab={currentTab}
+                                    handleModalType={handleModalType}
                                     handleDeleteSesion={handleDeleteSesion}
                                     handleSesionEdit={handleSesionEdit} />
                                 )
