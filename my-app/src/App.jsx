@@ -289,35 +289,33 @@ class App extends Component {
   handleDiagnosticoLoad = async (setData) => {
 
     const diagnostico = await ipcRenderer.invoke('load-diagnosticos', {});
+   
     setData(diagnostico);
+  
   }
 
   handleDeleteDescription = async (id, setData, data) => {
 
-    console.log(id, data)
-
     const descripcion = await ipcRenderer.invoke('eliminar-descripcion', id);
 
-    console.log(descripcion);
     const newDescripcion = data.filter(e => e._id !== descripcion);
-
 
     setData(newDescripcion);
 
   }
 
   handleDescripcionLoad = async (setData) => {
-    console.log(setData);
+  
     const descripcion = await ipcRenderer.invoke('find-descripcion', {});
+  
     setData(descripcion);
-    console.log(descripcion)
 
   }
 
   handleDescripcionUpload = (args) => {
 
     ipcRenderer.invoke('agregar-descripcion', args).then(() => {
-      //Despues de terminar de guardar la descripci'on pasa a la seleccion de descripcion
+
       this.setState({ modalType: 'isD' });
 
     });

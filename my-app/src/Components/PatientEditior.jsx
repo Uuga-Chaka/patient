@@ -40,8 +40,8 @@ function invertColor(hex, bw) {
 }
 
 
-const Tab = ({ nombre, handleTabChange, index, handleTabClosing, id }) => {
-    return (<div className="patientTab-single active" title="Juan Pablo Gallego Arias" onClick={() => handleTabChange(index)}>
+const Tab = ({ nombre, handleTabChange, currentTab, index, handleTabClosing, id }) => {
+    return (<div className={currentTab === index ? "patientTab-single active" : "patientTab-single"} title="Juan Pablo Gallego Arias" onClick={() => handleTabChange(index)}>
         <p>
             {nombre.substring(0, 22)}
             {nombre.length > 21 && "..."}
@@ -65,11 +65,12 @@ const PatientEditor = ({ openTabs, currentTab, handleHistoryEdit, handleSesionEd
                 {openTabs.map((e, i) => {
                     return <Tab
                         handleTabClosing={handleTabClosing}
-                        nombre={e.nombre}
                         handleTabChange={handleTabChange}
-                        index={i}
-                        id={e._id}
+                        currentTab={currentTab}
                         key={'tab-' + e._id}
+                        nombre={e.nombre}
+                        id={e._id}
+                        index={i}
                     />
                 })}
             </div>

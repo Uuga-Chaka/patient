@@ -10,9 +10,12 @@
             width: 150px;
             border-bottom: 2px solid $white;
             cursor: pointer;
+            opacity: 0.75;
+            background-color: $white;
             &.active {
                 background-color: $white;
                 border-bottom: 2px solid $dark_blue;
+                opacity: 1;
             }
             > p {
                 user-select: none;
@@ -112,7 +115,7 @@
                             cursor: pointer;
                             transition: transform 0.2s;
                             // background-color: red;
-                       
+
                             display: flex;
                             justify-content: flex-end;
                             border-radius: 100px;
