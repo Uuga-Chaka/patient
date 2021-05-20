@@ -33,6 +33,7 @@ class App extends Component {
       modalType: 0,
       modalData: {},
       currentTab: 0,
+      currentDescription: null,
       openTabs: [],
       personas: [],
       requestSent: false,
@@ -122,6 +123,29 @@ class App extends Component {
       this.cargarPaciente(this.state.sbFiltros);
 
     });
+
+  }
+
+  handleSesionDescriptionEdit = (text) => {
+
+
+    if (this.state.currentDescription !== null) {
+
+      var currentTab = this.state.openTabs.slice();
+
+      currentTab[this.state.currentTab].sesiones[this.state.currentDescription].info += (" " + text);
+
+      console.log( currentTab[this.state.currentTab].sesiones[this.state.currentDescription]);
+
+      this.setState({ openTabs: currentTab });
+
+    }
+
+  }
+
+  handleCurrentEditedSesion = (sesion) => {
+
+    this.setState({ currentDescription: sesion });
 
   }
 
@@ -234,7 +258,7 @@ class App extends Component {
         setModalData={this.setModalData}
         loadData={this.handleDescripcionLoad}
         selectorType={'cdi'}
-        handleAddDiagnostico={this.handleAddDiagnostico}
+        handleAdd={this.handleSesionDescriptionEdit}
       />;
     } else if (this.state.modalType === "isS") {
       /**Abrir el selctor de items con las opciones de los diagnostico */
@@ -571,6 +595,7 @@ class App extends Component {
               handleHistoryEdit={this.handleHistoryEdit}
               handleDeleteSesion={this.handleDeleteSesion}
               handleRemoveDiagnostico={this.handleRemoveDiagnostico}
+              handleCurrentEditedSesion={this.handleCurrentEditedSesion}
             />
           }
           {

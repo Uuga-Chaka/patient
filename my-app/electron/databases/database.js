@@ -93,6 +93,14 @@ function createLocalDB() {
 
     });
 
+    ipcMain.handle('eliminar-descripcion', async (evt, args) => {
+
+        const descripcion = await controladorDescripcion.borrar(args);
+
+        return descripcion;
+
+    })
+
     /** args: nombre, descripcion del diagnostico*/
     ipcMain.handle('agregar-diagnostico', async (evt, args) => {
 

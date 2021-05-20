@@ -74,8 +74,12 @@ const ItemSelector = (props) => {
         </div>
         <div className="ph__flex-column list__container">
             {itemsToDisplay.map(e => {
-                console.log(e);
-                return (<div className="list__item" key={e._id} onClick={() => props.handleAdd(e)}>
+                return (<div className="list__item" key={e._id} onClick={() => {
+                    props.title === "descripciones" ?
+                        props.handleAdd(e.descripcion, props.sesionIndex) :
+                        props.handleAdd(e)
+
+                }}>
                     <div className="list__item-top">
                         <div className="title" style={{ backgroundColor: e.color ? e.color : '#AEC5E7' }}>
                             <p style={{ color: e.color ? invertColor(e.color, true) : '#4E6673' }}>{e.nombre}</p>

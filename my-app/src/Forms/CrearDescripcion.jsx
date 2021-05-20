@@ -3,8 +3,11 @@ import { useState } from "react";
 const CrearDescripcion = (props) => {
 
     const [formJson, setFormJson] = useState({
+   
         nombre: "",
+   
         descripcion: ""
+   
     });
 
     return (<>
