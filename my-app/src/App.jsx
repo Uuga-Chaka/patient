@@ -289,9 +289,9 @@ class App extends Component {
   handleDiagnosticoLoad = async (setData) => {
 
     const diagnostico = await ipcRenderer.invoke('load-diagnosticos', {});
-   
+
     setData(diagnostico);
-  
+
   }
 
   handleDeleteDescription = async (id, setData, data) => {
@@ -305,9 +305,9 @@ class App extends Component {
   }
 
   handleDescripcionLoad = async (setData) => {
-  
+
     const descripcion = await ipcRenderer.invoke('find-descripcion', {});
-  
+
     setData(descripcion);
 
   }
@@ -481,25 +481,41 @@ class App extends Component {
   }
 
   handleTabOpening = async (patientId) => {
+
     if (this.state.openTabs.length <= 0 && this.state.currentTab > 0) {
+
       this.setState({ currentTab: 0 })
+
     };
 
+
     for (let i = 0; i < this.state.openTabs.length; i++) {
+
       const tab = this.state.openTabs[i];
+
       if (tab._id === patientId) return;
+
     }
 
+
     const patient = await ipcRenderer.invoke('find-patient', { _id: patientId });
-    console.log(patient[0]);
+
+    console.log(patient);
 
     this.setState({
-      openTabs: [...this.state.openTabs, patient[0]],
+
+      openTabs: [patient[0], ...this.state.openTabs],
+
     }, () => {
+
       this.setState({
-        currentTab: this.state.openTabs.length - 1
+
+        currentTab: 0
+
       })
+
     });
+
   }
 
   handleTabClosing = (tabId) => {

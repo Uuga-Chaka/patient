@@ -1,3 +1,6 @@
-{"nombre":"Nombre","tipo_documento":"CC","numero_documento":10000,"fecha_nacimiento":"2020-12-01","sesiones":[],"diagnosticos":[],"_id":"kxfGLZKBksXEhrzj"}
-{"nombre":"Nombre","tipo_documento":"CC","numero_documento":10000,"fecha_nacimiento":"2020-12-01","sesiones":[],"diagnosticos":[],"_id":"JFV82PpAD3qwpf3C"}
-{"nombre":"Nombre","tipo_documento":"CC","numero_documento":10000,"fecha_nacimiento":"2020-12-01","sesiones":[],"diagnosticos":[],"_id":"6Pe2X99ncMHcscyi"}
+{"nombre":"Juan Pablo Gallego Arias","tipo_documento":"CC","numero_documento":1112230054,"fecha_nacimiento":"2020-12-01","sesiones":[],"diagnosticos":[{"nombre":"Attention Disorder","descripcion":"Prueba P^ruebita pruebota","codigo":"539","color":"#161de3","_id":"MSXkg8mTGwGL4CjM"}],"_id":"7C5odH43XUaKKO84"}
+{"nombre":"TingMei Chen","tipo_documento":"CC","numero_documento":12345678,"fecha_nacimiento":"2020-12-01","sesiones":[],"diagnosticos":[],"_id":"F5YAjMBwxu39JCz7"}
+{"nombre":"Ivan Dario","tipo_documento":"CC","numero_documento":17485296,"fecha_nacimiento":"2020-12-01","sesiones":[],"diagnosticos":[],"_id":"RApRMESTuVwD4MM9"}
+{"nombre":"Juan Pablo Gallego Arias","tipo_documento":"CC","numero_documento":1112230054,"fecha_nacimiento":"2020-12-01","sesiones":[],"descripcion":"Probando esta monda","diagnosticos":[{"nombre":"Attention Disorder","descripcion":"Prueba P^ruebita pruebota","codigo":"539","color":"#161de3","_id":"MSXkg8mTGwGL4CjM"}],"_id":"7C5odH43XUaKKO84"}
+{"nombre":"TingMei Chen","tipo_documento":"CC","numero_documento":12345678,"fecha_nacimiento":"2020-12-01","sesiones":[],"descripcion":"Probando esta monda x2","diagnosticos":[],"_id":"F5YAjMBwxu39JCz7"}
+{"nombre":"Ivan Dario","tipo_documento":"CC","numero_documento":17485296,"fecha_nacimiento":"2020-12-01","sesiones":[],"descripcion":"Probando esta monda x3","diagnosticos":[],"_id":"RApRMESTuVwD4MM9"}

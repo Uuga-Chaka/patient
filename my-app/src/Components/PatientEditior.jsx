@@ -43,7 +43,7 @@ function invertColor(hex, bw) {
 const Tab = ({ nombre, handleTabChange, currentTab, index, handleTabClosing, id }) => {
     return (<div className={currentTab === index ? "patientTab-single active" : "patientTab-single"} title="Juan Pablo Gallego Arias" onClick={() => handleTabChange(index)}>
         <p>
-            {nombre.substring(0, 22)}
+            {nombre.substring(0, 17)}
             {nombre.length > 21 && "..."}
         </p>
         <img src={ic_close}

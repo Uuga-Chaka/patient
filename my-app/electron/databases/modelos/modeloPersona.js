@@ -12,6 +12,7 @@ function agregar(arg) {
         numero_documento: parseInt(arg.numero_documento),
         fecha_nacimiento: arg.fecha_nacimiento,
         sesiones: arg.sesiones,
+        descripcion: arg.descripcion,
         diagnosticos: arg.diagnosticos
     }
 
@@ -42,6 +43,7 @@ function actualizar(arg) {
         numero_documento: parseInt(arg.numero_documento),
         fecha_nacimiento: arg.fecha_nacimiento,
         sesiones: arg.sesiones,
+        descripcion: arg.descripcion,
         diagnosticos: arg.diagnosticos
     }
 
@@ -71,15 +73,15 @@ function encontrar(query) {
     // }
 
     return new Promise((resolve, reject) => {
-      
+
         collection.find(query, (err, paciente) => {
-  
+
             if (err) reject(err);
-  
+
             resolve(paciente);
-  
+
         });
-  
+
     });
 
 }

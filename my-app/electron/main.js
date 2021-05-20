@@ -7,7 +7,7 @@ const shortcuts = require('./shortcuts');
 
 //Habilitar las herramientas  de desarrollo
 const reactDevToolsPath = path.join(os.homedir(),
-    "/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.11.0_0")
+    "/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.13.3_0")
 
 
 //Creaci'on de la ventana
@@ -45,7 +45,7 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-    // await session.defaultSession.loadExtension(reactDevToolsPath)
+    await session.defaultSession.loadExtension(reactDevToolsPath)
 }).then(createWindow)
 
 app.on('window-all-closed', () => {
