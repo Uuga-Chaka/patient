@@ -97,7 +97,7 @@ function createLocalDB() {
 
         const descripcion = await controladorDescripcion.borrar(args);
 
-        return descripcion;
+        return descripcion === 1 ? args : 0;
 
     })
 

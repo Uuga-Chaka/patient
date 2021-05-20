@@ -135,7 +135,7 @@ class App extends Component {
 
       currentTab[this.state.currentTab].sesiones[this.state.currentDescription].info += (" " + text);
 
-      console.log( currentTab[this.state.currentTab].sesiones[this.state.currentDescription]);
+      console.log(currentTab[this.state.currentTab].sesiones[this.state.currentDescription]);
 
       this.setState({ openTabs: currentTab });
 
@@ -259,6 +259,7 @@ class App extends Component {
         loadData={this.handleDescripcionLoad}
         selectorType={'cdi'}
         handleAdd={this.handleSesionDescriptionEdit}
+        handleRemove={this.handleDeleteDescription}
       />;
     } else if (this.state.modalType === "isS") {
       /**Abrir el selctor de items con las opciones de los diagnostico */
@@ -289,6 +290,20 @@ class App extends Component {
 
     const diagnostico = await ipcRenderer.invoke('load-diagnosticos', {});
     setData(diagnostico);
+  }
+
+  handleDeleteDescription = async (id, setData, data) => {
+
+    console.log(id, data)
+
+    const descripcion = await ipcRenderer.invoke('eliminar-descripcion', id);
+
+    console.log(descripcion);
+    const newDescripcion = data.filter(e => e._id !== descripcion);
+
+
+    setData(newDescripcion);
+
   }
 
   handleDescripcionLoad = async (setData) => {

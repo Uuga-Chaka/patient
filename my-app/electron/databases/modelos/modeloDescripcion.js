@@ -27,7 +27,7 @@ function borrar(id) {
 
     return new Promise((resolve, reject) => {
 
-        collection.remove(id, (err, response) => {
+        collection.remove({ _id: id }, (err, response) => {
 
             if (!err) resolve(response);
 

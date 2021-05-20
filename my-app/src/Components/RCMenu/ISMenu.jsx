@@ -52,9 +52,12 @@ const ISMenu = (props) => {
                 <p >Eliminar</p>
             </div>
             <div className="PLIMenu_action" onClick={() => {
-                if (props.handleCurrentEditedSesion)
+                if (props.handleCurrentEditedSesion) {
                     props.handleCurrentEditedSesion(props.index);
-                props.handleModalType('isD')
+
+                }
+                if (props.handleModalType)
+                    props.handleModalType('isD')
             }}>
                 <p>Descripcion</p>
             </div>
